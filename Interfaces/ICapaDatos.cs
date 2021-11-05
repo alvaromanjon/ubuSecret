@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Interfaces
 {
-    interface ICapaDatos
+    public interface ICapaDatos
     {
         bool ActualizaSecreto(); //TO-DO
         bool ActualizaUsuario();//TO-DO
