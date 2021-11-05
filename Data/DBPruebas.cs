@@ -26,22 +26,7 @@ namespace Data
             throw new NotImplementedException();
         }
 
-        public bool BorraSecreto(Secreto secreto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool BorraSecreto(int identificador)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool BorraUsuario(string cuenta)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool BorraUsuario(int identificador)
+        public Secreto BorraSecreto(string nombre)
         {
             throw new NotImplementedException();
         }
@@ -61,22 +46,7 @@ namespace Data
             throw new NotImplementedException();
         }
 
-        public bool LeeSecreto(Secreto secreto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool LeeSecreto(int identificador)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool LeeUsuario(int identificador)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool LeeUsuario(string cuenta)
+        public Secreto LeeSecreto(string nombre)
         {
             throw new NotImplementedException();
         }
@@ -97,6 +67,36 @@ namespace Data
         }
 
         public int SiguienteUsuario()
+        {
+            throw new NotImplementedException();
+        }
+
+        Secreto ICapaDatos.BorraSecreto(int identificador)
+        {
+            throw new NotImplementedException();
+        }
+
+        Usuario ICapaDatos.BorraUsuario(string cuenta)
+        {
+            throw new NotImplementedException();
+        }
+
+        Usuario ICapaDatos.BorraUsuario(int identificador)
+        {
+            throw new NotImplementedException();
+        }
+
+        Secreto ICapaDatos.LeeSecreto(int identificador)
+        {
+            throw new NotImplementedException();
+        }
+
+        Usuario ICapaDatos.LeeUsuario(int identificador)
+        {
+            throw new NotImplementedException();
+        }
+
+        Usuario ICapaDatos.LeeUsuario(string cuenta)
         {
             throw new NotImplementedException();
         }

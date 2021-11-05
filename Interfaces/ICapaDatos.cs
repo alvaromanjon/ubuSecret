@@ -9,17 +9,17 @@ namespace Interfaces
     {
         bool ActualizaSecreto(); //TO-DO
         bool ActualizaUsuario();//TO-DO
-        bool BorraSecreto(Secreto secreto);
-        bool BorraSecreto(int identificador);
-        bool BorraUsuario(string cuenta);
-        bool BorraUsuario(int identificador);
+        Secreto BorraSecreto(string nombre);
+        Secreto BorraSecreto(int identificador);
+        Usuario BorraUsuario(string cuenta);
+        Usuario BorraUsuario(int identificador);
         bool ExisteUsuarioEMail(string correo);
         bool InsertaSecreto(Secreto secreto);
         bool InsertaUsuario(Usuario usuario);
-        bool LeeSecreto(Secreto secreto);
-        bool LeeSecreto(int identificador);
-        bool LeeUsuario(int identificador);
-        bool LeeUsuario(string cuenta);
+        Secreto LeeSecreto(string nombre);
+        Secreto LeeSecreto(int identificador);
+        Usuario LeeUsuario(int identificador);
+        Usuario LeeUsuario(string cuenta);
         int numeroSecretos();
         int NumeroUsuarios();
         int siguienteSecreto();
