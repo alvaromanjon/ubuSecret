@@ -4,7 +4,7 @@ using System.Text;
 
 namespace libreriaClases
 {
-    class Secreto
+    public class Secreto
     {
     }
 }
