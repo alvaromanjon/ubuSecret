@@ -6,6 +6,6 @@ namespace Interfaces
 {
     interface ICapaDatos
     {
-
+        test
     }
 }
