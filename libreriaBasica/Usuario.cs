@@ -1,22 +1,43 @@
 ﻿using System;
 using System.Security.Cryptography;
+
 namespace libreriaClases
 {
     public class Usuario
     {
-        private string contraseña;
+        private int idUsuario;
+        private string nombre;
         private string correo;
+        private string contraseña;
         private bool alta;
-        private bool cambiarContraseña; // Por ver
         private Roles rol;
 
-        public Usuario(string correo, string contraseña)
+        public Usuario(string nombre, string correo, string contraseña, Roles rol)
         {
+            this.nombre = nombre;
             this.correo = correo;
-            this.contraseña = Encriptar(contraseña);
+            this.contraseña = contraseña;
+            this.rol = rol;
             this.alta = false;
-            this.rol = Roles.USUARIO;
-            this.cambiarContraseña = false;
+        }
+
+        public int IdUsuario
+        {
+            get
+            {
+                return this.idUsuario;
+            }
+            set
+            {
+                this.idUsuario = value;
+            }
+        }
+        public string Nombre
+        {
+            get
+            {
+                return this.nombre;
+            }
         }
 
         public string Correo
@@ -61,7 +82,6 @@ namespace libreriaClases
             if (admin.Rol == Roles.ADMINISTRADOR)
             {
                 this.alta = true;
-                this.cambiarContraseña = true;
             }
         }
 
@@ -71,6 +91,8 @@ namespace libreriaClases
                 return false;
             return contraseña == this.contraseña;
         }
+
+        /**
         private string Encriptar(string password)
         {
             byte[] bytes = System.Text.Encoding.UTF8.GetBytes(password);
@@ -78,5 +100,6 @@ namespace libreriaClases
             bytes = mySHA256.ComputeHash(bytes);
             return (System.Text.Encoding.ASCII.GetString(bytes));
         }
+        */
     }
 }
