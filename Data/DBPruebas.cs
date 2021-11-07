@@ -128,7 +128,15 @@ namespace Data
 
         public Secreto LeeSecreto(string nombre)
         {
-            throw new NotImplementedException();
+            Secreto s = null;
+            foreach (KeyValuePair<int, Secreto> kvp in tblSecretos)
+            {
+                if (String.Equals(kvp.Value.Nombre, nombre))
+                {
+                    s = kvp.Value;
+                }
+            }
+            return s;
         }
 
         public Secreto LeeSecreto(int identificador)
@@ -139,7 +147,15 @@ namespace Data
 
         public Usuario LeeUsuario(string cuenta)
         {
-            throw new NotImplementedException();
+            Usuario u = null;
+            foreach (KeyValuePair<int, Usuario> kvp in tblUsuarios)
+            {
+                if (String.Equals(kvp.Value.Correo, cuenta))
+                {
+                    u = kvp.Value;
+                }
+            }
+            return u;
         }
 
         public Usuario LeeUsuario(int identificador)
