@@ -1,18 +1,14 @@
-using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace libreriaClasesTest
 {
-    public class Tests
+    [TestClass]
+    public class UsuarioTest
     {
-        [SetUp]
-        public void Setup()
+        [TestMethod]
+        public void TestMethod1()
         {
-        }
-
-        [Test]
-        public void Test1()
-        {
-            Assert.Pass();
         }
     }
 }
