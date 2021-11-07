@@ -10,6 +10,7 @@ namespace libreriaClases
         private string nombre;
         private string correo;
         private string contraseña;
+        private bool cambioContraseña;
         private Roles rol;
 
         public Usuario(string nombre, string correo, string contraseña, Roles rol)
@@ -19,6 +20,7 @@ namespace libreriaClases
             this.nombre = nombre;
             this.correo = correo;
             this.contraseña = contraseña;
+            this.cambioContraseña = false;
             this.rol = rol;
         }
 
@@ -89,7 +91,7 @@ namespace libreriaClases
         {
             if (admin.Rol == Roles.ADMINISTRADOR)
             {
-                if (this.estado == Estados.SOLICITADO)
+                if (this.estado == Estados.SOLICITADO && this.cambioContraseña)
                 {
                     this.estado = Estados.VALIDADO;
                 }
@@ -105,6 +107,7 @@ namespace libreriaClases
                 {
                     retorno = true;
                     this.contraseña = contraseñaNueva;
+                    this.cambioContraseña = true;
                 }
                 
             }
