@@ -17,30 +17,47 @@ namespace DataTest
         public void InicializaMetodos()
         {
             data = new DBPruebas();
-            this.u1a = new Usuario("Admin", "admin@ubusecret.es", "Password", Roles.ADMINISTRADOR);
-            data.InsertaUsuario(u1a);
-            u1a.DarAlta(u1a);
-            u1a.CambiarContraseña("Password", "P@ssword");
-            data.ActualizaUsuario(u1a);
+            this.u1a = new Usuario("Admin", "u1a@ubusecret.es", "Password", Roles.ADMINISTRADOR);
+            //data.InsertaUsuario(u1a);
+            //u1a.DarAlta(u1a);
+            //u1a.CambiarContraseña("Password", "P@ssword");
+            //data.ActualizaUsuario(u1a);
 
-            this.u1b = new Usuario("Admin2", "admin@ubusecret.es", "Password", Roles.ADMINISTRADOR);
-            data.InsertaUsuario(u1b);
-            u1b.DarAlta(u1a);
-            u1b.CambiarContraseña("Password", "P@ssword");
-            data.ActualizaUsuario(u1b);
+            this.u1b = new Usuario("Admin2", "u1a@ubusecret.es", "Password", Roles.ADMINISTRADOR);
+            //data.InsertaUsuario(u1b);
+            //u1b.DarAlta(u1a);
+            //u1b.CambiarContraseña("Password", "P@ssword");
+            //data.ActualizaUsuario(u1b);
 
-            this.u2a = new Usuario("Normal", "normal@ubusecret.es", "Password", Roles.USUARIO);
-            data.InsertaUsuario(u2a);
-            u2a.DarAlta(u1a);
-            u2a.CambiarContraseña("Password", "P@ssword");
-            data.ActualizaUsuario(u2a);
+            this.u2a = new Usuario("Normal", "u2a@ubusecret.es", "Password", Roles.USUARIO);
+            //data.InsertaUsuario(u2a);
+            //u2a.DarAlta(u1a);
+            //u2a.CambiarContraseña("Password", "P@ssword");
+            //data.ActualizaUsuario(u2a);
         }
 
-        [TestMethod]
+        [TestMethod()]
         public void DBPruebasComprobacion()
         {
             Assert.IsTrue(this.data.NumeroUsuarios() == 2);
             Assert.AreEqual(this.data.SiguienteUsuario(), 3);
         }
+
+        [TestMethod()]
+        public void InsertaUsuarioTest()
+        {
+            Assert.AreEqual(-1, u1a.IdUsuario);
+            Assert.AreEqual(Estados.PRECARGADO, u1a.Estado);
+            Assert.IsTrue(data.InsertaUsuario(u1a));
+            Assert.AreEqual(3, u1a.IdUsuario);
+            Assert.AreEqual(Estados.SOLICITADO, u1a.Estado);
+
+            Assert.AreEqual(-1, u1b.IdUsuario);
+            Assert.AreEqual(Estados.PRECARGADO, u1b.Estado);
+            Assert.IsFalse(data.InsertaUsuario(u1b));
+            Assert.AreEqual(-1, u1b.IdUsuario);
+            Assert.AreEqual(Estados.PRECARGADO, u1b.Estado);
+        }
+
     }
 }

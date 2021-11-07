@@ -127,14 +127,17 @@ namespace Data
         {
             bool retorno = false;
 
-            if (!ExisteUsuarioEMail(usuario.Correo))
+            if (usuario.Estado == Estados.PRECARGADO)
             {
-                usuario.IdUsuario = this.siguienteIdUsuario;
-                // Método grabar?
-                this.siguienteIdUsuario += 1;
-                tblUsuarios.Add(usuario.IdUsuario, usuario);
-                retorno = true;
-            }
+                if (!ExisteUsuarioEMail(usuario.Correo))
+                {
+                    usuario.IdUsuario = this.siguienteIdUsuario;
+                    usuario.Cargar();
+                    this.siguienteIdUsuario += 1;
+                    tblUsuarios.Add(usuario.IdUsuario, usuario);
+                    retorno = true;
+                }
+            }    
             return retorno;
         }
 
