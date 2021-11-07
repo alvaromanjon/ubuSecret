@@ -126,16 +126,14 @@ namespace Data
         public bool InsertaUsuario(Usuario usuario)
         {
             bool retorno = false;
-            if (usuario.Alta)
+
+            if (!ExisteUsuarioEMail(usuario.Correo))
             {
-                if (!ExisteUsuarioEMail(usuario.Correo))
-                {
-                    usuario.IdUsuario = this.siguienteIdUsuario;
-                    // Método grabar?
-                    this.siguienteIdUsuario += 1;
-                    tblUsuarios.Add(usuario.IdUsuario, usuario);
-                    retorno = true;
-                }
+                usuario.IdUsuario = this.siguienteIdUsuario;
+                // Método grabar?
+                this.siguienteIdUsuario += 1;
+                tblUsuarios.Add(usuario.IdUsuario, usuario);
+                retorno = true;
             }
             return retorno;
         }
@@ -155,8 +153,15 @@ namespace Data
 
         public Secreto LeeSecreto(int identificador)
         {
-            int index = tblSecretos.IndexOfKey(identificador);
-            return tblSecretos.Values[index];
+            Secreto s = null;
+            foreach (KeyValuePair<int, Secreto> kvp in tblSecretos)
+            {
+                if (kvp.Key == identificador)
+                {
+                    s = kvp.Value;
+                }
+            }
+            return s;
         }
 
         public Usuario LeeUsuario(string cuenta)
@@ -174,8 +179,15 @@ namespace Data
 
         public Usuario LeeUsuario(int identificador)
         {
-            int index = tblUsuarios.IndexOfKey(identificador);
-            return tblUsuarios.Values[index];
+            Usuario u = null;
+            foreach (KeyValuePair<int, Usuario> kvp in tblUsuarios)
+            {
+                if (kvp.Key == identificador)
+                {
+                    u = kvp.Value;
+                }
+            }
+            return u;
         }
 
         public int NumeroSecretos()
