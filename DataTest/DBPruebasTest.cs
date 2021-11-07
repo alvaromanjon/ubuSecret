@@ -37,8 +37,10 @@ namespace DataTest
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void DBPruebasComprobacion()
         {
+            Assert.IsTrue(this.data.NumeroUsuarios() == 2);
+            Assert.AreEqual(this.data.SiguienteUsuario(), 3);
         }
     }
 }
