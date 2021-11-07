@@ -23,11 +23,16 @@ namespace Data
             admin.CambiarContraseña("Password", "P@ssword");
             this.ActualizaUsuario(admin);
 
+            //Usuario normal
             Usuario normal = new Usuario("Normal", "normal@ubusecret.es", "Password", Roles.USUARIO);
             this.InsertaUsuario(normal);
             normal.DarAlta(admin);
             normal.CambiarContraseña("Password", "P@ssword");
             this.ActualizaUsuario(normal);
+
+            //Secreto
+            Secreto s = new Secreto(normal, "El primer secreto", "Texto del primer secreto");
+            this.InsertaSecreto(s);
         }
 
         public bool ActualizaSecreto(Secreto secreto)
@@ -113,13 +118,12 @@ namespace Data
         public bool InsertaSecreto(Secreto secreto)
         {
             bool retorno = false;
-            if (this.LeeSecreto(secreto.Nombre) == null)
-            {
-                secreto.IdSecreto = this.siguienteIdSecreto;
-                this.siguienteIdSecreto += 1;
-                tblSecretos.Add(secreto.IdSecreto, secreto);
-                retorno = true;
-            }
+
+            secreto.IdSecreto = this.siguienteIdSecreto;
+            this.siguienteIdSecreto += 1;
+            tblSecretos.Add(secreto.IdSecreto, secreto);
+            retorno = true;
+
             return retorno;
         }
 

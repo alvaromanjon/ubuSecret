@@ -14,6 +14,7 @@ namespace libreriaClases
 
         public Secreto(Usuario usuario, string nombre, string texto)
         {
+            this.idSecreto = -1;
             this.usuario = usuario;
             this.nombre = nombre;
             this.texto = texto;
