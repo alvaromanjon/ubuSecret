@@ -80,7 +80,13 @@ namespace Data
         public bool BorraUsuario(int identificador)
         {
             bool retorno = false;
-            //Borrar secretos y entradas en los secretos con acceso
+            foreach (KeyValuePair<int, Secreto> kvp in tblSecretos)
+            {
+                if (identificador == kvp.Value.Usuario.IdUsuario)
+                {
+                    BorraSecreto(kvp.Value.IdSecreto);
+                }
+            }
             retorno = tblUsuarios.Remove(identificador);
 
             return retorno;
