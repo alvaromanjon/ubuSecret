@@ -85,6 +85,21 @@ namespace libreriaClases
             }
         }
 
+        public bool CambiarContraseña(string contraseñaAntigua, string contraseñaNueva)
+        {
+            bool retorno = false;
+            if (contraseñaNueva != null)
+            {
+                if (CompruebaContraseña(contraseñaAntigua))
+                {
+                    retorno = true;
+                    this.contraseña = contraseñaNueva;
+                }
+                
+            }
+            return retorno;
+        }
+
         public bool CompruebaContraseña(string contraseña)
         {
             if (contraseña == null)
