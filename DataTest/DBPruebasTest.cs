@@ -12,6 +12,7 @@ namespace DataTest
         Usuario u1a;
         Usuario u1b;
         Usuario u2a;
+        Secreto s1a;
 
         [TestInitialize()]
         public void InicializaMetodos()
@@ -34,6 +35,8 @@ namespace DataTest
             //u2a.DarAlta(u1a);
             //u2a.CambiarContraseña("Password", "P@ssword");
             //data.ActualizaUsuario(u2a);
+
+            this.s1a = new Secreto(u1a, "Secreto1", "Secreto de prueba");
         }
 
         [TestMethod()]
@@ -42,6 +45,7 @@ namespace DataTest
             Assert.AreEqual(this.data.NumeroUsuarios(), 2);
             Assert.AreEqual(this.data.SiguienteUsuario(), 3);
             Assert.AreEqual(this.data.NumeroSecretos(), 1);
+            Assert.AreEqual(this.data.SiguienteSecreto(), 2);
         }
 
         [TestMethod()]
@@ -66,6 +70,16 @@ namespace DataTest
             data.InsertaUsuario(u1a);
             Assert.AreEqual(data.LeeUsuario(u1a.Correo), u1a);
             Assert.AreEqual(data.LeeUsuario(u1a.IdUsuario), u1a);
+        }
+
+        [TestMethod()]
+        public void InsertaSecretoTest()
+        { 
+            Assert.AreEqual(-1, s1a.IdSecreto);
+            data.InsertaUsuario(u1a);
+            Assert.IsTrue(data.InsertaSecreto(s1a));
+            Assert.AreEqual(2, data.NumeroSecretos());
+            Assert.AreEqual(2, s1a.IdSecreto);
         }
 
     }

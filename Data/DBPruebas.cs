@@ -119,11 +119,13 @@ namespace Data
         {
             bool retorno = false;
 
-            secreto.IdSecreto = this.siguienteIdSecreto;
-            this.siguienteIdSecreto += 1;
-            tblSecretos.Add(secreto.IdSecreto, secreto);
-            retorno = true;
-
+            if (LeeUsuario(secreto.Usuario.Correo) != null)
+            {
+                secreto.IdSecreto = this.siguienteIdSecreto;
+                this.siguienteIdSecreto += 1;
+                tblSecretos.Add(secreto.IdSecreto, secreto);
+                retorno = true;
+            }
             return retorno;
         }
 
