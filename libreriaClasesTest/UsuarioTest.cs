@@ -28,6 +28,7 @@ namespace libreriaClasesTest
         public void CompruebaDarAlta()
         {
             Assert.IsFalse(u2a.DarAlta(u2a));
+            u1a.CambiarRol(Roles.ADMINISTRADOR);
             Assert.IsFalse(u2a.DarAlta(u1a));
             u2a.Cargar();
             Assert.AreEqual(u2a.Estado, Estados.SOLICITADO);
