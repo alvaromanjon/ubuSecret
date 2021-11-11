@@ -106,7 +106,7 @@ namespace libreriaClases
             bool retorno = false;
             if (contraseñaNueva != null)
             {
-                if (CompruebaContraseña(contraseñaAntigua))
+                if (CompruebaContraseña(contraseñaAntigua) && !contraseñaAntigua.Equals(contraseñaNueva))
                 {
                     retorno = true;
                     this.contraseña = contraseñaNueva;

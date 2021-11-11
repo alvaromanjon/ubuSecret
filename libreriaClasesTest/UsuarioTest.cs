@@ -14,7 +14,7 @@ namespace libreriaClasesTest
         public void InicializaMetodos()
         {
             u1a = new Usuario("Pepe", "pepepepez@ubu.es", "Password", Roles.USUARIO);
-            u2a = new Usuario("Pepa", "pepapepez@ubu.es", "Password", Roles.USUARIO);
+            u2a = new Usuario("Pepa", "pepapepez@ubu.es", "Password", Roles.USUARIO);  
         }
         
         [TestMethod()]
@@ -32,9 +32,17 @@ namespace libreriaClasesTest
             Assert.IsFalse(u2a.DarAlta(u1a));
             u2a.Cargar();
             Assert.AreEqual(u2a.Estado, Estados.SOLICITADO);
+            Assert.IsFalse(u2a.DarAlta(u1a));
             u2a.CambiarContraseña(u2a.Contraseña, "Password2");
             Assert.IsTrue(u2a.CompruebaContraseña("Password2"));
             Assert.IsTrue(u2a.DarAlta(u1a));
+        }
+
+        [TestMethod()]
+        public void CompruebaCambiarContraseña()
+        {
+            Assert.IsFalse(u1a.CambiarContraseña("Password", "Password"));
+            Assert.IsFalse(u1a.CambiarContraseña("Pepe", "Password2"));
         }
     }
 }
