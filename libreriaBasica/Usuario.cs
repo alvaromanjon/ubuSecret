@@ -87,15 +87,18 @@ namespace libreriaClases
             }
         }
 
-        public void DarAlta(Usuario admin)
+        public bool DarAlta(Usuario admin)
         {
+            bool retorno = false;
             if (admin.Rol == Roles.ADMINISTRADOR)
             {
                 if (this.estado == Estados.SOLICITADO && this.cambioContraseña)
                 {
                     this.estado = Estados.VALIDADO;
+                    retorno = true;
                 }
             }
+            return retorno;
         }
 
         public bool CambiarContraseña(string contraseñaAntigua, string contraseñaNueva)

@@ -21,7 +21,19 @@ namespace libreriaClasesTest
         public void CompruebaCambioRol()
         {
             u1a.CambiarRol(Roles.ADMINISTRADOR);
-            Assert.IsTrue(u1a.Rol == Roles.ADMINISTRADOR);
+            Assert.AreEqual(u1a.Rol, Roles.ADMINISTRADOR);
+        }
+
+        [TestMethod()]
+        public void CompruebaDarAlta()
+        {
+            Assert.IsFalse(u2a.DarAlta(u2a));
+            Assert.IsFalse(u2a.DarAlta(u1a));
+            u2a.Cargar();
+            Assert.AreEqual(u2a.Estado, Estados.SOLICITADO);
+            u2a.CambiarContraseña(u2a.Contraseña, "Password2");
+            Assert.IsTrue(u2a.CompruebaContraseña("Password2"));
+            Assert.IsTrue(u2a.DarAlta(u1a));
         }
     }
 }
