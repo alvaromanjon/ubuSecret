@@ -39,8 +39,9 @@ namespace DataTest
         [TestMethod()]
         public void DBPruebasComprobacion()
         {
-            Assert.IsTrue(this.data.NumeroUsuarios() == 2);
+            Assert.AreEqual(this.data.NumeroUsuarios(), 2);
             Assert.AreEqual(this.data.SiguienteUsuario(), 3);
+            Assert.AreEqual(this.data.NumeroSecretos(), 1);
         }
 
         [TestMethod()]
@@ -57,6 +58,14 @@ namespace DataTest
             Assert.IsFalse(data.InsertaUsuario(u1b));
             Assert.AreEqual(-1, u1b.IdUsuario);
             Assert.AreEqual(Estados.PRECARGADO, u1b.Estado);
+        }
+
+        [TestMethod()]
+        public void CompruebaUsuarios()
+        {
+            data.InsertaUsuario(u1a);
+            Assert.AreEqual(data.LeeUsuario(u1a.Correo), u1a);
+            Assert.AreEqual(data.LeeUsuario(u1a.IdUsuario), u1a);
         }
 
     }
