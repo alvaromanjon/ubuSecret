@@ -47,5 +47,17 @@ namespace libreriaClases
                 return this.nombre;
             }
         }
+
+        public string Texto
+        {
+            get
+            {
+                return this.texto;
+            }
+            set
+            {
+                this.texto = value;
+            }
+        }
     }
 }

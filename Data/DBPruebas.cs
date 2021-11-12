@@ -93,13 +93,21 @@ namespace Data
         public bool BorraUsuario(int identificador)
         {
             bool retorno = false;
+            List<int> secretosABorrar = new List<int>();
+
             foreach (KeyValuePair<int, Secreto> kvp in tblSecretos)
             {
                 if (identificador == kvp.Value.Usuario.IdUsuario)
                 {
-                    BorraSecreto(kvp.Value.IdSecreto);
+                    secretosABorrar.Add(kvp.Value.IdSecreto);
                 }
             }
+
+            foreach (int elemento in secretosABorrar)
+            {
+                BorraSecreto(elemento);
+            }
+            
             retorno = tblUsuarios.Remove(identificador);
 
             return retorno;
@@ -115,11 +123,21 @@ namespace Data
             return retorno;
         }
 
+        public bool EsSecretoRepetido(string nombre)
+        {
+            bool retorno = false;
+            if (this.LeeSecreto(nombre) != null)
+            {
+                retorno = true;
+            }
+            return retorno;
+        }
+
         public bool InsertaSecreto(Secreto secreto)
         {
             bool retorno = false;
 
-            if (LeeUsuario(secreto.Usuario.Correo) != null)
+            if (LeeUsuario(secreto.Usuario.Correo) != null && !EsSecretoRepetido(secreto.Nombre))
             {
                 secreto.IdSecreto = this.siguienteIdSecreto;
                 this.siguienteIdSecreto += 1;
