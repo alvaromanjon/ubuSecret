@@ -13,25 +13,24 @@
 
           <!-- Email input -->
           <div class="form-outline mb-4">
-            <input type="email" id="form3Example3" class="form-control form-control-lg"
-              placeholder="Enter a valid email address" />
-            <label class="form-label" for="form3Example3">Email address</label>
+            <label class="form-label" for="correo">Correo electrónico</label>
+            <input type="email" id="correo" class="form-control form-control-lg"
+              placeholder="Introduce el correo electrónico" />
           </div>
 
           <!-- Password input -->
           <div class="form-outline mb-3">
-            <input type="password" id="form3Example4" class="form-control form-control-lg"
-              placeholder="Enter password" />
-            <label class="form-label" for="form3Example4">Password</label>
+            <label class="form-label" for="contraseña">Contraseña</label>
+            <input type="password" id="contraseña" class="form-control form-control-lg"
+              placeholder="Introduce la contraseña" />
+          </div>
+        </br>
+
+        <!-- Login -->
+          <div class="text-center text-lg-start mt-2 pt-4">
+            <button type="button" class="btn btn-primary btn-lg">Iniciar sesión</button>
           </div>
 
-          
-
-          <div class="text-center text-lg-start mt-4 pt-2">
-            <button type="button" class="btn btn-primary btn-lg"
-              style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-
-          </div>
         </form>
       </div>
     </div>
