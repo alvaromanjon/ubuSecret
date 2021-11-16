@@ -13,7 +13,8 @@
             <input type="password" class="form-control" id="password" placeholder="Contraseña">
         </div>
 
-        <p><a runat="server" href="Login.aspx" class="btn btn-primary">Iniciar sesión</a> <a runat="server" href="Registro.aspx" class="btn btn-danger">Cancelar</a></p>
+        </br>
+        <p><a runat="server" href="Login.aspx" class="btn btn-primary">Iniciar sesión</a> <a runat="server" href="Default.aspx" class="btn btn-danger">Cancelar</a></p>
     </div>
 
 </asp:Content>

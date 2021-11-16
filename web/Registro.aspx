@@ -17,13 +17,15 @@
             <input type="password" class="form-control" id="password" placeholder="Contraseña">
         </div>
         </br>
+
         <label for="rol" class="form-label">Rol escogido</label>
         <asp:DropDownList ID="rol" runat="server">
             <asp:ListItem Text= "Usuario" Value="1"></asp:ListItem>
             <asp:ListItem Text= "Administrador" Value="2"></asp:ListItem>
         </asp:DropDownList>
-
-        <p><a runat="server" href="Login.aspx" class="btn btn-primary">Iniciar sesión</a> <a runat="server" href="Registro.aspx" class="btn btn-danger">Cancelar</a></p>
+        
+        </br>
+        <p><a runat="server" href="Registro.aspx" class="btn btn-primary">Registrarse</a> <a runat="server" href="Default.aspx" class="btn btn-danger">Cancelar</a></p>
     </div>
 
 </asp:Content>
