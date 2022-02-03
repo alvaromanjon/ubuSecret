@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace web {
+namespace www {
     
     
     public partial class Site_Mobile {

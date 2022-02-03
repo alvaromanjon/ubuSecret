@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace web
+namespace www
 {
     public partial class SiteMaster : MasterPage
     {

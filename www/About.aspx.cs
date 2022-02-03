@@ -1,13 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace web
+namespace www
 {
-    public partial class Site_Mobile : System.Web.UI.MasterPage
+    public partial class About : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
