@@ -207,6 +207,16 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{286E014E-CF47-48B0-AC4B-F67002A79780}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libreriaBasica\libreriaClases.csproj">
+      <Project>{E0F2319C-928D-4824-9723-A1B750D39461}</Project>
+      <Name>libreriaClases</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
