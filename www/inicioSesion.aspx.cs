@@ -13,5 +13,10 @@ namespace www
         {
 
         }
+
+        protected void btnInicio_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("inicio.aspx");
+        }
     }
 }

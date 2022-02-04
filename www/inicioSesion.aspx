@@ -150,7 +150,7 @@
                     <td>&nbsp;</td>
                     <td class="auto-style8">&nbsp;</td>
                     <td class="auto-style3" colspan="3">
-                        <asp:Button ID="btnInicio" runat="server" Text="&lt;&lt; Volver al inicio" Width="231px" />
+                        <asp:Button ID="btnInicio" runat="server" Text="&lt;&lt; Volver al inicio" Width="231px" OnClick="btnInicio_Click" />
                     </td>
                     <td class="auto-style1">&nbsp;</td>
                     <td>&nbsp;</td>
