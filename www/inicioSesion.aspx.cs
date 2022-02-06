@@ -51,7 +51,7 @@ namespace www
                     if (uAutenticado.Estado.Equals(Estados.VALIDADO))
                     {
                         Session["uAutenticado"] = uAutenticado;
-                        Server.Transfer("inicio.aspx"); //CAMBIAR
+                        Server.Transfer("panel.aspx"); 
                     }
                     else
                     {
