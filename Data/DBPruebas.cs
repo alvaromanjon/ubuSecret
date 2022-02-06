@@ -19,15 +19,15 @@ namespace Data
             //Usuario admin
             Usuario admin = new Usuario("Admin", "admin@ubusecret.es", "Password", Roles.ADMINISTRADOR);
             this.InsertaUsuario(admin);
-            admin.DarAlta(admin);
             admin.CambiarContraseña("Password", "P@ssword");
+            admin.DarAlta(admin);
             this.ActualizaUsuario(admin);
 
             //Usuario normal
             Usuario normal = new Usuario("Normal", "normal@ubusecret.es", "Password", Roles.USUARIO);
             this.InsertaUsuario(normal);
-            normal.DarAlta(admin);
             normal.CambiarContraseña("Password", "P@ssword");
+            normal.DarAlta(admin);
             this.ActualizaUsuario(normal);
 
             //Secreto

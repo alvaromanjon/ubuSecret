@@ -159,7 +159,7 @@
                     <td class="auto-style2">&nbsp;</td>
                     <td class="auto-style1">&nbsp;</td>
                     <td class="auto-style3" colspan="3">
-                        <asp:TextBox ID="tbxRepetirContraseña" runat="server" OnTextChanged="TextBox4_TextChanged" TextMode="Password" Width="542px"></asp:TextBox>
+                        <asp:TextBox ID="tbxRepetirContraseña" runat="server" TextMode="Password" Width="542px"></asp:TextBox>
                     </td>
                     <td class="auto-style1">&nbsp;</td>
                     <td class="auto-style2">&nbsp;</td>
@@ -197,7 +197,7 @@
                     <td class="auto-style2">&nbsp;</td>
                     <td class="auto-style1">&nbsp;</td>
                     <td class="auto-style3" colspan="3">
-                        <asp:TextBox ID="tbxPreguntaSeguridad1" runat="server" OnTextChanged="TextBox4_TextChanged" TextMode="Password" Width="542px"></asp:TextBox>
+                        <asp:TextBox ID="tbxPreguntaSeguridad1" runat="server" TextMode="Password" Width="542px"></asp:TextBox>
                     </td>
                     <td class="auto-style1">&nbsp;</td>
                     <td class="auto-style2">&nbsp;</td>
@@ -235,7 +235,7 @@
                     <td class="auto-style2">&nbsp;</td>
                     <td class="auto-style1">&nbsp;</td>
                     <td class="auto-style3" colspan="3">
-                        <asp:TextBox ID="tbxPreguntaSeguridad2" runat="server" OnTextChanged="TextBox4_TextChanged" TextMode="Password" Width="542px"></asp:TextBox>
+                        <asp:TextBox ID="tbxPreguntaSeguridad2" runat="server" TextMode="Password" Width="542px"></asp:TextBox>
                     </td>
                     <td class="auto-style1">&nbsp;</td>
                     <td class="auto-style2">&nbsp;</td>

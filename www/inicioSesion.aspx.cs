@@ -42,7 +42,27 @@ namespace www
         {
             if (this.db.ExisteUsuarioEMail(this.tbxUsuario.Text))
             {
+                this.lblUsuarioError.Text = "";
                 uAutenticado = this.db.LeeUsuario(this.tbxUsuario.Text);
+                if (uAutenticado != null && uAutenticado.CompruebaContraseña(this.tbxContraseña.Text))
+                {
+                    this.lblContraseñaError.Text = "";
+
+                    if (uAutenticado.Estado.Equals(Estados.VALIDADO))
+                    {
+                        Session["uAutenticado"] = uAutenticado;
+                        Server.Transfer("inicio.aspx"); //CAMBIAR
+                    }
+                    else
+                    {
+                        this.lblInicioError.Text = "El usuario no se encuentra autorizado";
+                    }
+                    
+                }
+                else
+                {
+                    this.lblContraseñaError.Text = "La contraseña es incorrecta";
+                }
             }
             else
             {

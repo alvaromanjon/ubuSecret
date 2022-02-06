@@ -11,17 +11,12 @@ namespace www
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void TextBox4_TextChanged(object sender, EventArgs e)
-        {
-
+            if (!IsPostBack)
+            {
+                this.lblCorreoError.Text = "";
+                this.lblRepetirContraseñaError.Text = "";
+                this.lblRegistroError.Text = "";
+            }
         }
 
         protected void btnInicio_Click(object sender, EventArgs e)
