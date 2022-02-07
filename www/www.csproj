@@ -125,7 +125,7 @@
     <Content Include="registro.aspx" />
     <Content Include="inicio.aspx" />
     <Content Include="panel.aspx" />
-    <Content Include="registroExistoso.aspx" />
+    <Content Include="registroExitoso.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -201,12 +201,12 @@
     <Compile Include="panel.aspx.designer.cs">
       <DependentUpon>panel.aspx</DependentUpon>
     </Compile>
-    <Compile Include="registroExistoso.aspx.cs">
-      <DependentUpon>registroExistoso.aspx</DependentUpon>
+    <Compile Include="registroExitoso.aspx.cs">
+      <DependentUpon>registroExitoso.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="registroExistoso.aspx.designer.cs">
-      <DependentUpon>registroExistoso.aspx</DependentUpon>
+    <Compile Include="registroExitoso.aspx.designer.cs">
+      <DependentUpon>registroExitoso.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
