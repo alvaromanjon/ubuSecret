@@ -54,7 +54,7 @@ namespace www
                         uAutenticado = new Usuario(tbxNombre.Text, tbxCorreo.Text, tbxContraseña.Text, Roles.USUARIO);
                         db.InsertaUsuario(uAutenticado);
                         Session["uAutenticado"] = uAutenticado;
-                        Server.Transfer("panel.aspx"); //CAMBIAR
+                        Server.Transfer("panel.aspx");
                     }
                     else
                     {
