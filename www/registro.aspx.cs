@@ -51,7 +51,7 @@ namespace www
                         && this.tbxPreguntaSeguridad1.Text != "" && this.tbxPreguntaSeguridad2.Text != "")
                     {
                         this.lblRegistroError.Text = "";
-                        uAutenticado = new Usuario(tbxNombre.Text, tbxCorreo.Text, tbxContraseña.Text, Roles.USUARIO);
+                        uAutenticado = new Usuario(tbxNombre.Text, tbxCorreo.Text, tbxContraseña.Text, tbxPreguntaSeguridad1.Text, tbxPreguntaSeguridad2.Text, Roles.USUARIO);
                         db.InsertaUsuario(uAutenticado);
                         Session["uAutenticado"] = uAutenticado;
                         Server.Transfer("registroExitoso.aspx");

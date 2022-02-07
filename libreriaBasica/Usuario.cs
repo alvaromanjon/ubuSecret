@@ -10,16 +10,20 @@ namespace libreriaClases
         private string nombre;
         private string correo;
         private string contraseña;
+        private string pregunta1;
+        private string pregunta2;
         private bool cambioContraseña;
         private Roles rol;
 
-        public Usuario(string nombre, string correo, string contraseña, Roles rol)
+        public Usuario(string nombre, string correo, string contraseña, string pregunta1, string pregunta2, Roles rol)
         {
             this.idUsuario = -1;
             this.estado = Estados.PRECARGADO;
             this.nombre = nombre;
             this.correo = correo;
             this.contraseña = contraseña;
+            this.pregunta1 = pregunta1;
+            this.pregunta2 = pregunta2;
             this.cambioContraseña = false;
             this.rol = rol;
         }
@@ -63,6 +67,22 @@ namespace libreriaClases
             get
             {
                 return this.contraseña;
+            }
+        }
+
+        public string Pregunta1
+        {
+            get
+            {
+                return this.pregunta1;
+            }
+        }
+
+        public string Pregunta2
+        {
+            get
+            {
+                return this.pregunta2;
             }
         }
 
@@ -124,14 +144,25 @@ namespace libreriaClases
             return contraseña == this.contraseña;
         }
 
-        /**
-        private string Encriptar(string password)
+        public bool CompruebaPreguntaSeguridad(string pregunta, int numPregunta)
         {
-            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(password);
-            SHA256 mySHA256 = SHA256.Create();
-            bytes = mySHA256.ComputeHash(bytes);
-            return (System.Text.Encoding.ASCII.GetString(bytes));
+            if (pregunta != null)
+            {
+                if (numPregunta == 1)
+                {
+                    if (pregunta == this.pregunta1)
+                    {
+                        return true;
+                    }
+                } else if (numPregunta == 2)
+                {
+                    if (pregunta == this.pregunta2)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
-        */
     }
 }

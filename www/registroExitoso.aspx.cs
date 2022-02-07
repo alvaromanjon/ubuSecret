@@ -29,12 +29,17 @@ namespace www
                 Server.Transfer("inicioSesion.aspx");
             }
 
-            lblDescripcionRegistro.Text = "El usuario " + uAutenticado.Correo + " acaba de ser registrado en el sistema, ahora deberá de esperar a que un administrador acepte la solicitud, y a continuación deberá de cambiar la contraseña antes de poder iniciar sesión.";
+            lblDescripcionRegistro.Text = "El usuario " + uAutenticado.Correo + " acaba de ser registrado en el sistema, ahora deberá de cambiar la contraseña, y a continuación, se deberá de esperar a que un administrador acepte su solicitud para poder iniciar sesión en el sistema.";
         }
 
         protected void btnInicio_Click(object sender, EventArgs e)
         {
             Response.Redirect("inicio.aspx");
+        }
+
+        protected void btnCambioContraseña_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("cambioContrasena.aspx");
         }
     }
 }

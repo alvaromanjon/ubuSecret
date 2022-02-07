@@ -50,6 +50,18 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td class="auto-style3">
+                        <asp:Button ID="btnCambioContraseña" runat="server" Text="Cambio de contraseña" Width="345px" OnClick="btnCambioContraseña_Click" />
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td class="auto-style3">
                         <asp:Button ID="btnInicio" runat="server" Text="&lt;&lt; Volver al inicio" Width="231px" OnClick="btnInicio_Click" />
                     </td>
                     <td>&nbsp;</td>

@@ -42,6 +42,15 @@ namespace www
         protected global::System.Web.UI.WebControls.Label lblDescripcionRegistro;
 
         /// <summary>
+        /// Control btnCambioContraseña.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCambioContraseña;
+
+        /// <summary>
         /// Control btnInicio.
         /// </summary>
         /// <remarks>

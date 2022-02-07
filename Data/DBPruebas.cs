@@ -17,14 +17,14 @@ namespace Data
         {
             //Datos iniciales simulados
             //Usuario admin
-            Usuario admin = new Usuario("Admin", "admin@ubusecret.es", "Password", Roles.ADMINISTRADOR);
+            Usuario admin = new Usuario("Admin", "admin@ubusecret.es", "Password", "Maristas", "12", Roles.ADMINISTRADOR);
             this.InsertaUsuario(admin);
             admin.CambiarContraseña("Password", "P@ssword");
             admin.DarAlta(admin);
             this.ActualizaUsuario(admin);
 
             //Usuario normal
-            Usuario normal = new Usuario("Normal", "normal@ubusecret.es", "Password", Roles.USUARIO);
+            Usuario normal = new Usuario("Normal", "normal@ubusecret.es", "Password", "Jesuitas", "21", Roles.USUARIO);
             this.InsertaUsuario(normal);
             normal.CambiarContraseña("Password", "P@ssword");
             normal.DarAlta(admin);
