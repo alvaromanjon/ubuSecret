@@ -128,6 +128,7 @@
     <Content Include="cambioContrasenaExitoso.aspx" />
     <Content Include="registroExitoso.aspx" />
     <Content Include="cambioContrasena.aspx" />
+    <Content Include="crearSecreto.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -223,6 +224,13 @@
     </Compile>
     <Compile Include="cambioContrasena.aspx.designer.cs">
       <DependentUpon>cambioContrasena.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="crearSecreto.aspx.cs">
+      <DependentUpon>crearSecreto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="crearSecreto.aspx.designer.cs">
+      <DependentUpon>crearSecreto.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

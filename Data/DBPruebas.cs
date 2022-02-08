@@ -123,21 +123,11 @@ namespace Data
             return retorno;
         }
 
-        public bool EsSecretoRepetido(string nombre)
-        {
-            bool retorno = false;
-            if (this.LeeSecreto(nombre) != null)
-            {
-                retorno = true;
-            }
-            return retorno;
-        }
-
         public bool InsertaSecreto(Secreto secreto)
         {
             bool retorno = false;
 
-            if (LeeUsuario(secreto.Usuario.Correo) != null && !EsSecretoRepetido(secreto.Nombre))
+            if (LeeUsuario(secreto.Usuario.Correo) != null)
             {
                 secreto.IdSecreto = this.siguienteIdSecreto;
                 this.siguienteIdSecreto += 1;

@@ -40,7 +40,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style2">
-                        <asp:Button ID="btnCrearSecreto" runat="server" Text="Crear un secreto" />
+                        <asp:Button ID="btnCrearSecreto" runat="server" Text="Crear un secreto" OnClick="btnCrearSecreto_Click" />
                     </td>
                     <td>&nbsp;</td>
                     <td>
@@ -53,7 +53,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <asp:Label ID="lblSecreto" runat="server" Text="Secreto 1"></asp:Label>
+                        <asp:Label ID="lblNumSecretos" runat="server"></asp:Label>
                     </td>
                     <td>&nbsp;</td>
                 </tr>

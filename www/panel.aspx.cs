@@ -29,6 +29,7 @@ namespace www
             }
 
             this.lblUsuario.Text = uAutenticado.Correo;
+            this.lblNumSecretos.Text = "Número de secretos: " + db.NumeroSecretos();
         }
 
         protected void btnCerrarSesion_Click(object sender, EventArgs e)
@@ -36,6 +37,11 @@ namespace www
             uAutenticado = null;
             Session["uAutenticado"] = uAutenticado;
             Server.Transfer("inicioSesion.aspx");
+        }
+
+        protected void btnCrearSecreto_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("crearSecreto.aspx");
         }
     }
 }
