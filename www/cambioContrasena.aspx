@@ -11,10 +11,10 @@
             text-align: center;
         }
         .auto-style7 {
-            width: 528px;
+            width: 464px;
         }
         .auto-style8 {
-            width: 528px;
+            width: 464px;
             height: 40px;
         }
         .auto-style9 {
