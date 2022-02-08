@@ -125,6 +125,7 @@
     <Content Include="registro.aspx" />
     <Content Include="inicio.aspx" />
     <Content Include="panel.aspx" />
+    <Content Include="cambioContrasenaExitoso.aspx" />
     <Content Include="registroExitoso.aspx" />
     <Content Include="cambioContrasena.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -167,6 +168,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="cambioContrasenaExitoso.aspx.cs">
+      <DependentUpon>cambioContrasenaExitoso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cambioContrasenaExitoso.aspx.designer.cs">
+      <DependentUpon>cambioContrasenaExitoso.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

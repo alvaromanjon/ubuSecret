@@ -60,7 +60,7 @@ namespace www
                         {
                             this.lblPregunta2Error.Text = "";
                             uAutenticado.CambiarContraseña(tbxContraseñaAntigua.Text, tbxNuevaContraseña.Text);
-                            Server.Transfer("inicio.aspx");
+                            Server.Transfer("cambioContrasenaExitoso.aspx");
                         }
                         else
                         {
