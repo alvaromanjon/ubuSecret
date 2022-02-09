@@ -155,6 +155,19 @@ namespace Data
             return retorno;
         }
 
+        public SortedList<int, Secreto> LeeSecretosUsuario(Usuario usuario)
+        {
+            SortedList<int, Secreto> secUsuarios = new SortedList<int, Secreto>();
+            foreach (KeyValuePair<int, Secreto> kvp in tblSecretos)
+            {
+                if (String.Equals(kvp.Value.Usuario, usuario))
+                {
+                    secUsuarios.Add(kvp.Value.IdSecreto, kvp.Value);
+                }
+            }
+            return secUsuarios;
+        }
+
         public Secreto LeeSecreto(string nombre)
         {
             Secreto s = null;
