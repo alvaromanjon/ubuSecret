@@ -54,7 +54,7 @@ namespace www
                         uAutenticado = new Usuario(tbxNombre.Text, tbxCorreo.Text, tbxContraseña.Text, tbxPreguntaSeguridad1.Text, tbxPreguntaSeguridad2.Text, Roles.USUARIO);
                         db.InsertaUsuario(uAutenticado);
                         Session["uAutenticado"] = uAutenticado;
-                        Server.Transfer("registroExitoso.aspx");
+                        Response.Redirect("registroExitoso.aspx");
                     }
                     else
                     {

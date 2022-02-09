@@ -25,7 +25,7 @@ namespace www
             uAutenticado = (Usuario)Session["uAutenticado"];
             if (uAutenticado == null)
             {
-                Server.Transfer("inicioSesion.aspx");
+                Response.Redirect("inicioSesion.aspx");
             }
 
             this.lblUsuario.Text = uAutenticado.Correo;
@@ -36,12 +36,12 @@ namespace www
         {
             uAutenticado = null;
             Session["uAutenticado"] = uAutenticado;
-            Server.Transfer("inicioSesion.aspx");
+            Response.Redirect("inicioSesion.aspx");
         }
 
         protected void btnCrearSecreto_Click(object sender, EventArgs e)
         {
-            Server.Transfer("crearSecreto.aspx");
+            Response.Redirect("crearSecreto.aspx");
         }
     }
 }

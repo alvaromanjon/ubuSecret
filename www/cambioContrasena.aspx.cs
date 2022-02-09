@@ -26,7 +26,7 @@ namespace www
             uAutenticado = (Usuario)Session["uAutenticado"];
             if (uAutenticado == null)
             {
-                Server.Transfer("inicioSesion.aspx");
+                Response.Redirect("inicioSesion.aspx");
             }
 
             lblUsuario.Text = uAutenticado.Correo;
@@ -60,7 +60,7 @@ namespace www
                         {
                             this.lblPregunta2Error.Text = "";
                             uAutenticado.CambiarContraseña(tbxContraseñaAntigua.Text, tbxNuevaContraseña.Text);
-                            Server.Transfer("cambioContrasenaExitoso.aspx");
+                            Response.Redirect("cambioContrasenaExitoso.aspx");
                         }
                         else
                         {

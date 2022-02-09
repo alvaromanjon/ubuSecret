@@ -26,7 +26,7 @@ namespace www
             uAutenticado = (Usuario)Session["uAutenticado"];
             if (uAutenticado == null)
             {
-                Server.Transfer("inicioSesion.aspx");
+                Response.Redirect("inicioSesion.aspx");
             }
 
             if (!IsPostBack)
@@ -48,7 +48,7 @@ namespace www
                         this.lblSecretoError.Text = "";
                         s = new Secreto(db.LeeUsuario(tbxDestinatario.Text), tbxTitulo.Text, tbxSecreto.Text);
                         db.InsertaSecreto(s);
-                        Server.Transfer("panel.aspx");
+                        Response.Redirect("panel.aspx");
                     }
                     else
                     {
@@ -69,7 +69,7 @@ namespace www
 
         protected void btnPanel_Click(object sender, EventArgs e)
         {
-            Server.Transfer("panel.aspx");
+            Response.Redirect("panel.aspx");
         }
     }
 }

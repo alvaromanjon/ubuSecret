@@ -26,7 +26,7 @@ namespace www
             uAutenticado = (Usuario)Session["uAutenticado"];
             if (uAutenticado == null)
             {
-                Server.Transfer("inicioSesion.aspx");
+                Response.Redirect("inicioSesion.aspx");
             }
 
             lblDescripcionCambio.Text = "El usuario " + uAutenticado.Correo + " ha cambiado la contraseña con éxito, ahora deberá de esperar a que un administrador autorice su acceso para poder iniciar sesión.";

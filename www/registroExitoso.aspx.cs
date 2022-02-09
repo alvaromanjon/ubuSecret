@@ -26,7 +26,7 @@ namespace www
             uAutenticado = (Usuario)Session["uAutenticado"];
             if (uAutenticado == null)
             {
-                Server.Transfer("inicioSesion.aspx");
+                Response.Redirect("inicioSesion.aspx");
             }
 
             lblDescripcionRegistro.Text = "El usuario " + uAutenticado.Correo + " acaba de ser registrado en el sistema, ahora deberá de cambiar la contraseña, y a continuación, se deberá de esperar a que un administrador acepte su solicitud para poder iniciar sesión en el sistema.";
@@ -39,7 +39,7 @@ namespace www
 
         protected void btnCambioContraseña_Click(object sender, EventArgs e)
         {
-            Server.Transfer("cambioContrasena.aspx");
+            Response.Redirect("cambioContrasena.aspx");
         }
     }
 }
