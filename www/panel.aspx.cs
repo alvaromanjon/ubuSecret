@@ -30,6 +30,22 @@ namespace www
 
             this.lblUsuario.Text = uAutenticado.Correo;
             this.lblNumSecretos.Text = "Número de secretos: " + db.NumeroSecretos();
+
+            SortedList<int, Secreto> secUsuarios = db.LeeSecretosUsuario(uAutenticado);
+            foreach (KeyValuePair<int, Secreto> kvp in secUsuarios)
+            {
+                Secretos.InnerHtml += String.Format(@"
+                <a href=""secreto.aspx"">
+                        <div style=""width: 40%"" >
+                            {0}
+                        </div>
+                        <div style=""width: 60%"" >
+                            {1}
+                        </div>
+                </ a >", kvp.Value.Nombre, kvp.Value.Texto);
+
+
+            }
         }
 
         protected void btnCerrarSesion_Click(object sender, EventArgs e)

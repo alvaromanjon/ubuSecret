@@ -62,8 +62,18 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="2">&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td colspan="3">
+                        <div runat="server" id="Secretos" style="min-width: 800px; max-width: 1200px">
+                            <div style="width: 40%">
+                                <strong>Nombre
+                            </strong>
+                            </div>
+                            <div style="width: 60%">
+                                <strong>Secreto
+                            </strong>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2">&nbsp;</td>
