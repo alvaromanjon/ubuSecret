@@ -35,16 +35,10 @@ namespace www
             foreach (KeyValuePair<int, Secreto> kvp in secUsuarios)
             {
                 Secretos.InnerHtml += String.Format(@"
-                <a href=""secreto.aspx"">
-                        <div style=""width: 40%"" >
-                            {0}
-                        </div>
-                        <div style=""width: 60%"" >
-                            {1}
-                        </div>
-                </ a >", kvp.Value.Nombre, kvp.Value.Texto);
-
-
+                    <strong>Nombre: </strong> {0} <br>
+                    <strong>Secreto: </strong> {1} <br>
+                    <br>
+                ", kvp.Value.Nombre, kvp.Value.Texto);
             }
         }
 
