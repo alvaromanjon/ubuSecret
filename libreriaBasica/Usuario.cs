@@ -146,7 +146,7 @@ namespace libreriaClases
 
         public bool CompruebaPreguntaSeguridad(string pregunta, int numPregunta)
         {
-            if (pregunta != null)
+            if (pregunta != null && numPregunta >= 1 && numPregunta <= 2)
             {
                 if (numPregunta == 1)
                 {
