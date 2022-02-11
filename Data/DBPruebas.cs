@@ -61,11 +61,11 @@ namespace Data
             return retorno;
         }
 
-        public bool BorraSecreto(string nombre)
+        public bool BorraSecreto(Usuario destinatario, string nombre)
         {
             bool retorno = false;
             Secreto s;
-            s = this.LeeSecreto(nombre);
+            s = this.LeeSecreto(destinatario, nombre);
             if (s != null)
             {
                 retorno = this.BorraSecreto(s.IdSecreto);
@@ -129,10 +129,13 @@ namespace Data
 
             if (LeeUsuario(secreto.Usuario.Correo) != null)
             {
-                secreto.IdSecreto = this.siguienteIdSecreto;
-                this.siguienteIdSecreto += 1;
-                tblSecretos.Add(secreto.IdSecreto, secreto);
-                retorno = true;
+                if (LeeSecreto(secreto.Usuario, secreto.Nombre) == null)
+                {
+                    secreto.IdSecreto = this.siguienteIdSecreto;
+                    this.siguienteIdSecreto += 1;
+                    tblSecretos.Add(secreto.IdSecreto, secreto);
+                    retorno = true;
+                }
             }
             return retorno;
         }
@@ -168,12 +171,12 @@ namespace Data
             return secUsuarios;
         }
 
-        public Secreto LeeSecreto(string nombre)
+        public Secreto LeeSecreto(Usuario destinatario, string nombre)
         {
             Secreto s = null;
             foreach (KeyValuePair<int, Secreto> kvp in tblSecretos)
             {
-                if (String.Equals(kvp.Value.Nombre, nombre))
+                if (String.Equals(kvp.Value.Nombre, nombre) && destinatario == kvp.Value.Usuario)
                 {
                     s = kvp.Value;
                 }
