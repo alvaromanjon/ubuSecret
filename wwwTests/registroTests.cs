@@ -24,7 +24,7 @@ namespace wwwTests
             driver.Navigate().GoToUrl("https://localhost:44382/registro");
             driver.FindElement(By.Id("tbxNombre")).Click();
             driver.FindElement(By.Id("tbxNombre")).Clear();
-            driver.FindElement(By.Id("tbxNombre")).SendKeys("Pepe");
+            driver.FindElement(By.Id("tbxNombre")).SendKeys("Pedro");
             driver.FindElement(By.Id("tbxCorreo")).Click();
             driver.FindElement(By.Id("tbxCorreo")).Clear();
             driver.FindElement(By.Id("tbxCorreo")).SendKeys("normal@ubusecret.es");
@@ -33,7 +33,7 @@ namespace wwwTests
 
             driver.FindElement(By.Id("tbxCorreo")).Click();
             driver.FindElement(By.Id("tbxCorreo")).Clear();
-            driver.FindElement(By.Id("tbxCorreo")).SendKeys("pepe@pepeperez.com");
+            driver.FindElement(By.Id("tbxCorreo")).SendKeys("pedro@pedrito.com");
             driver.FindElement(By.Id("tbxContraseña")).Click();
             driver.FindElement(By.Id("tbxContraseña")).Clear();
             driver.FindElement(By.Id("tbxContraseña")).SendKeys("hola");
@@ -59,7 +59,7 @@ namespace wwwTests
             driver.Navigate().GoToUrl("https://localhost:44382/registro");
             driver.FindElement(By.Id("tbxNombre")).Click();
             driver.FindElement(By.Id("tbxNombre")).Clear();
-            driver.FindElement(By.Id("tbxNombre")).SendKeys("Pepe");
+            driver.FindElement(By.Id("tbxNombre")).SendKeys("Juan");
             driver.FindElement(By.Id("tbxCorreo")).Click();
             driver.FindElement(By.Id("tbxCorreo")).Clear();
             driver.FindElement(By.Id("tbxCorreo")).SendKeys("normal@ubusecret.es");
@@ -68,7 +68,7 @@ namespace wwwTests
 
             driver.FindElement(By.Id("tbxCorreo")).Click();
             driver.FindElement(By.Id("tbxCorreo")).Clear();
-            driver.FindElement(By.Id("tbxCorreo")).SendKeys("pepe@pepeperez.com");
+            driver.FindElement(By.Id("tbxCorreo")).SendKeys("juan@juanito.com");
             driver.FindElement(By.Id("tbxContraseña")).Click();
             driver.FindElement(By.Id("tbxContraseña")).Clear();
             driver.FindElement(By.Id("tbxContraseña")).SendKeys("hola");
