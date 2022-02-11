@@ -30,6 +30,11 @@ namespace Data
             normal.DarAlta(admin);
             this.ActualizaUsuario(normal);
 
+            //Usuario normal2 sin tener acceso autorizado
+            Usuario normal2 = new Usuario("Normal2", "normal2@ubusecret.es", "Password", "Sagrada Familia", "23", Roles.USUARIO);
+            this.InsertaUsuario(normal2);
+            normal2.CambiarContraseña("Password", "P@ssword");
+
             //Secreto
             Secreto s = new Secreto(normal, "El primer secreto", "Texto del primer secreto");
             this.InsertaSecreto(s);

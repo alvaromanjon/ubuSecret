@@ -37,8 +37,8 @@ namespace DataTests
         [TestMethod()]
         public void DBPruebasTest()
         {
-            Assert.AreEqual(this.data.NumeroUsuarios(), 2);
-            Assert.AreEqual(this.data.SiguienteUsuario(), 3);
+            Assert.AreEqual(this.data.NumeroUsuarios(), 3);
+            Assert.AreEqual(this.data.SiguienteUsuario(), 4);
             Assert.AreEqual(this.data.NumeroSecretos(), 1);
             Assert.AreEqual(this.data.SiguienteSecreto(), 2);
         }
@@ -98,7 +98,7 @@ namespace DataTests
             data.InsertaSecreto(s2a);
             Assert.IsTrue(data.BorraUsuario(u1a.Correo));
             Assert.IsTrue(data.NumeroSecretos() == 1);
-            Assert.IsTrue(data.NumeroUsuarios() == 3);
+            Assert.IsTrue(data.NumeroUsuarios() == 4);
         }
 
         [TestMethod()]
@@ -110,7 +110,7 @@ namespace DataTests
             data.InsertaSecreto(s2a);
             Assert.IsTrue(data.BorraUsuario(u1a.IdUsuario));
             Assert.IsTrue(data.NumeroSecretos() == 1);
-            Assert.IsTrue(data.NumeroUsuarios() == 3);
+            Assert.IsTrue(data.NumeroUsuarios() == 4);
         }
 
         [TestMethod()]
@@ -140,18 +140,18 @@ namespace DataTests
             Assert.AreEqual(-1, u1a.IdUsuario);
             Assert.AreEqual(Estados.PRECARGADO, u1a.Estado);
             Assert.IsTrue(data.InsertaUsuario(u1a));
-            Assert.AreEqual(3, u1a.IdUsuario);
+            Assert.AreEqual(4, u1a.IdUsuario);
             Assert.AreEqual(Estados.SOLICITADO, u1a.Estado);
-            Assert.IsTrue(data.NumeroUsuarios() == 3);
+            Assert.IsTrue(data.NumeroUsuarios() == 4);
             Assert.IsFalse(data.InsertaUsuario(u1a));
-            Assert.IsTrue(data.NumeroUsuarios() == 3);
+            Assert.IsTrue(data.NumeroUsuarios() == 4);
 
             Assert.AreEqual(-1, u1b.IdUsuario);
             Assert.AreEqual(Estados.PRECARGADO, u1b.Estado);
             Assert.IsFalse(data.InsertaUsuario(u1b));
             Assert.AreEqual(-1, u1b.IdUsuario);
             Assert.AreNotEqual(Estados.SOLICITADO, u1b.Estado);
-            Assert.IsTrue(data.NumeroUsuarios() == 3);
+            Assert.IsTrue(data.NumeroUsuarios() == 4);
         }
 
         [TestMethod()]
@@ -218,9 +218,9 @@ namespace DataTests
         [TestMethod()]
         public void NumeroUsuariosTest()
         {
-            Assert.AreEqual(data.NumeroUsuarios(), 2);
-            data.InsertaUsuario(u1a);
             Assert.AreEqual(data.NumeroUsuarios(), 3);
+            data.InsertaUsuario(u1a);
+            Assert.AreEqual(data.NumeroUsuarios(), 4);
         }
 
         [TestMethod()]
@@ -235,9 +235,9 @@ namespace DataTests
         [TestMethod()]
         public void SiguienteUsuarioTest()
         {
-            Assert.AreEqual(data.SiguienteUsuario(), 3);
-            data.InsertaUsuario(u1a);
             Assert.AreEqual(data.SiguienteUsuario(), 4);
+            data.InsertaUsuario(u1a);
+            Assert.AreEqual(data.SiguienteUsuario(), 5);
         }
     }
 }
