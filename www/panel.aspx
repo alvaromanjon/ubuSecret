@@ -53,12 +53,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <asp:Label ID="lblNumSecretos" runat="server"></asp:Label>
-                    </td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td colspan="2">&nbsp;</td>
+                        &nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>

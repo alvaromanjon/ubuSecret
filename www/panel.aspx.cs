@@ -29,7 +29,6 @@ namespace www
             }
 
             this.lblUsuario.Text = uAutenticado.Correo;
-            this.lblNumSecretos.Text = "Número de secretos: " + db.NumeroSecretos();
 
             SortedList<int, Secreto> secUsuarios = db.LeeSecretosUsuario(uAutenticado);
             foreach (KeyValuePair<int, Secreto> kvp in secUsuarios)

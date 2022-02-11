@@ -45,10 +45,17 @@ namespace www
                 {
                     if (this.tbxTitulo.Text != "" && this.tbxSecreto.Text != "")
                     {
-                        this.lblSecretoError.Text = "";
-                        s = new Secreto(db.LeeUsuario(tbxDestinatario.Text), tbxTitulo.Text, tbxSecreto.Text);
-                        db.InsertaSecreto(s);
-                        Response.Redirect("panel.aspx");
+                        if (db.LeeSecreto(db.LeeUsuario(this.tbxDestinatario.Text), this.tbxTitulo.Text) == null)
+                        {
+                            this.lblSecretoError.Text = "";
+                            s = new Secreto(db.LeeUsuario(tbxDestinatario.Text), tbxTitulo.Text, tbxSecreto.Text);
+                            db.InsertaSecreto(s);
+                            Response.Redirect("panel.aspx");
+                        }
+                        else
+                        {
+                            this.lblSecretoError.Text = "El destinatario ya tiene un secreto con ese título";
+                        }
                     }
                     else
                     {
@@ -62,7 +69,7 @@ namespace www
             }
             else
             {
-                this.lblDestinatarioError.Text = "El usuario no está registrado o no existe";
+                this.lblDestinatarioError.Text = "El destinatario no está registrado o no existe";
             }
 
         }
