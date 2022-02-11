@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="inicioSesionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="registroTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
