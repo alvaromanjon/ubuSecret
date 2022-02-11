@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using libreriaClases;
+using System.Linq;
 
 namespace DataTests
 {
@@ -17,6 +18,7 @@ namespace DataTests
         Secreto s1a;
         Secreto s1b;
         Secreto s2a;
+        Secreto s3a;
 
         [TestInitialize()]
         public void InicializaMetodos()
@@ -29,6 +31,7 @@ namespace DataTests
             this.s1a = new Secreto(u1a, "Secreto1", "Secreto de prueba");
             this.s1b = new Secreto(u1a, "Secreto1", "Esto es un secreto repetido");
             this.s2a = new Secreto(u1a, "Secreto2", "Otro secreto");
+            this.s3a = new Secreto(u2a, "Secreto3", "Otro secreto con distinto usuario");
         }
 
         [TestMethod()]
@@ -154,7 +157,17 @@ namespace DataTests
         [TestMethod()]
         public void LeeSecretosUsuarioTest()
         {
-            Assert.Fail();
+            SortedList<int, Secreto> secUsuario = new SortedList<int, Secreto>();
+            data.InsertaUsuario(u1a);
+            data.InsertaUsuario(u2a);
+            data.InsertaSecreto(s1a);
+            data.InsertaSecreto(s2a);
+            data.InsertaSecreto(s3a);
+
+            secUsuario.Add(s1a.IdSecreto, s1a);
+            secUsuario.Add(s2a.IdSecreto, s2a);
+
+            Assert.IsTrue(Enumerable.SequenceEqual(secUsuario, data.LeeSecretosUsuario(u1a)));
         }
 
         [TestMethod()]
