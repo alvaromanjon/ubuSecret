@@ -56,6 +56,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="crearSecretoTests.cs" />
+    <Compile Include="cambioContraseñaTests.cs" />
     <Compile Include="inicioSesionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="registroTests.cs" />
