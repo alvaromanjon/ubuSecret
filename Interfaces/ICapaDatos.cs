@@ -16,6 +16,7 @@ namespace Interfaces
         bool ExisteUsuarioEMail(string correo);
         bool InsertaSecreto(Secreto secreto);
         bool InsertaUsuario(Usuario usuario);
+        SortedList<int, Secreto> LeeSecretosUsuario(Usuario usuario);
         Secreto LeeSecreto(Usuario destinatario, string nombre);
         Secreto LeeSecreto(int identificador);
         Usuario LeeUsuario(string correo);
