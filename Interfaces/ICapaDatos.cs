@@ -17,6 +17,6 @@ namespace Interfaces
         SortedList<int, Secreto> LeeSecretosRecibidosUsuario(Usuario usuario);
         bool InsertaSecreto(Secreto secreto);
         Secreto LeeSecreto(int identificador);
-        bool BorraSecreto(int identificador);
+        Secreto BorraSecreto(int identificador);
     }
 }
