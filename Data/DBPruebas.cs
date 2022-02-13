@@ -152,6 +152,7 @@ namespace Data
                 tblSecretos.Add(secreto.IdSecreto, secreto);
                 retorno = true;
             }
+
             return retorno;
         }
 
@@ -180,12 +181,22 @@ namespace Data
             return s;
         }
 
-        private int SiguienteSecreto()
+        public int NumeroSecretos()
+        {
+            return this.tblSecretos.Count;
+        }
+
+        public int NumeroUsuarios()
+        {
+            return this.tblUsuarios.Count;
+        }
+
+        public int SiguienteSecreto()
         {
             return this.siguienteIdSecreto;
         }
 
-        private int SiguienteUsuario()
+        public int SiguienteUsuario()
         {
             return this.siguienteIdUsuario;
         }
