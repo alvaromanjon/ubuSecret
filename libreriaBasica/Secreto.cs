@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Security.Cryptography;
+using Newtonsoft.Json;
 
 namespace libreriaClases
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class Secreto
     {
         private int idSecreto;
@@ -22,6 +24,7 @@ namespace libreriaClases
             this.texto = texto;
         }
 
+        [JsonProperty]
         public int IdSecreto
         {
             get
@@ -34,6 +37,7 @@ namespace libreriaClases
             }
         }
 
+        [JsonProperty]
         public Usuario Origen
         {
             get
@@ -42,6 +46,7 @@ namespace libreriaClases
             }
         }
 
+        [JsonProperty]
         public Usuario Destino
         {
             get
@@ -50,6 +55,7 @@ namespace libreriaClases
             }
         }
 
+        [JsonProperty]
         public string Nombre
         {
             get
@@ -58,6 +64,7 @@ namespace libreriaClases
             }
         }
 
+        [JsonProperty]
         public string Texto
         {
             get
