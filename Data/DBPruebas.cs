@@ -59,7 +59,7 @@ namespace Data
             {
                 foreach (KeyValuePair<int, Secreto> kvp in tblSecretos)
                 {
-                    if (correo == kvp.Value.Usuario.Correo)
+                    if (correo == kvp.Value.Origen.Correo)
                     {
                         secretosABorrar.Add(kvp.Value.IdSecreto);
                     }
@@ -76,24 +76,56 @@ namespace Data
             return u;
         }
 
-        public List<Usuario> LeeUsuariosActivos()
+        public SortedList<int, Usuario> LeeUsuariosActivos()
         {
-            throw new NotImplementedException();
+            SortedList<int, Usuario> listUsuarios = new SortedList<int, Usuario>();
+            foreach (KeyValuePair<int, Usuario> kvp in tblUsuarios)
+            {
+                if (kvp.Value.Estado == Estados.VALIDADO)
+                {
+                    listUsuarios.Add(kvp.Value.IdUsuario, kvp.Value);
+                }
+            }
+            return listUsuarios;
         }
 
-        public List<Usuario> LeeUsuariosInactivos()
+        public SortedList<int, Usuario> LeeUsuariosInactivos()
         {
-            throw new NotImplementedException();
+            SortedList<int, Usuario> listUsuarios = new SortedList<int, Usuario>();
+            foreach (KeyValuePair<int, Usuario> kvp in tblUsuarios)
+            {
+                if (kvp.Value.Estado == Estados.PRECARGADO)
+                {
+                    listUsuarios.Add(kvp.Value.IdUsuario, kvp.Value);
+                }
+            }
+            return listUsuarios;
         }
 
-        public List<Usuario> LeeUsuariosPendientes()
+        public SortedList<int, Usuario> LeeUsuariosPendientes()
         {
-            throw new NotImplementedException();
+            SortedList<int, Usuario> listUsuarios = new SortedList<int, Usuario>();
+            foreach (KeyValuePair<int, Usuario> kvp in tblUsuarios)
+            {
+                if (kvp.Value.Estado == Estados.SOLICITADO)
+                {
+                    listUsuarios.Add(kvp.Value.IdUsuario, kvp.Value);
+                }
+            }
+            return listUsuarios;
         }
 
         public SortedList<int, Secreto> LeeSecretosEnviadosUsuario(Usuario usuario)
         {
-            throw new NotImplementedException();
+            SortedList<int, Secreto> secUsuarios = new SortedList<int, Secreto>();
+            foreach (KeyValuePair<int, Secreto> kvp in tblSecretos)
+            {
+                if (String.Equals(kvp.Value.Origen.Correo, usuario.Correo))
+                {
+                    secUsuarios.Add(kvp.Value.IdSecreto, kvp.Value);
+                }
+            }
+            return secUsuarios;
         }
 
         public SortedList<int, Secreto> LeeSecretosRecibidosUsuario(Usuario usuario)
@@ -101,7 +133,7 @@ namespace Data
             SortedList<int, Secreto> secUsuarios = new SortedList<int, Secreto>();
             foreach (KeyValuePair<int, Secreto> kvp in tblSecretos)
             {
-                if (String.Equals(kvp.Value.Usuario, usuario))
+                if (String.Equals(kvp.Value.Destino.Correo, usuario.Correo))
                 {
                     secUsuarios.Add(kvp.Value.IdSecreto, kvp.Value);
                 }
@@ -113,7 +145,7 @@ namespace Data
         {
             bool retorno = false;
 
-            if (LeeUsuario(secreto.Usuario.Correo) != null)
+            if (LeeUsuario(secreto.Origen.Correo) != null && LeeUsuario(secreto.Destino.Correo) != null)
             {
                 secreto.IdSecreto = this.siguienteIdSecreto;
                 this.siguienteIdSecreto += 1;

@@ -8,14 +8,16 @@ namespace libreriaClases
     public class Secreto
     {
         private int idSecreto;
-        private Usuario usuario;
+        private Usuario origen;
+        private Usuario destino;
         private string nombre;
         private string texto;
 
-        public Secreto(Usuario usuario, string nombre, string texto)
+        public Secreto(Usuario origen, Usuario destino, string nombre, string texto)
         {
             this.idSecreto = -1;
-            this.usuario = usuario;
+            this.origen = origen;
+            this.destino = destino;
             this.nombre = nombre;
             this.texto = texto;
         }
@@ -32,11 +34,19 @@ namespace libreriaClases
             }
         }
 
-        public Usuario Usuario
+        public Usuario Origen
         {
             get
             {
-                return this.usuario;
+                return this.origen;
+            }
+        }
+
+        public Usuario Destino
+        {
+            get
+            {
+                return this.destino;
             }
         }
 

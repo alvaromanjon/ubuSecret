@@ -10,9 +10,9 @@ namespace Interfaces
         Usuario LeeUsuario(string correo);
         bool InsertaUsuario(Usuario usuario);
         Usuario BorraUsuario(string correo);
-        List<Usuario> LeeUsuariosActivos();
-        List<Usuario> LeeUsuariosInactivos();
-        List<Usuario> LeeUsuariosPendientes();
+        SortedList<int, Usuario> LeeUsuariosActivos();
+        SortedList<int, Usuario> LeeUsuariosInactivos();
+        SortedList<int, Usuario> LeeUsuariosPendientes();
         SortedList<int, Secreto> LeeSecretosEnviadosUsuario(Usuario usuario);
         SortedList<int, Secreto> LeeSecretosRecibidosUsuario(Usuario usuario);
         bool InsertaSecreto(Secreto secreto);
