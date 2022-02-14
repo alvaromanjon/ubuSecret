@@ -9,33 +9,31 @@ using System.Linq;
 namespace DataTests
 {
     [TestClass()]
-    public class DBPruebasTests
+    public class DBPruebasTestsDD
     {
         DBPruebas data;
-        Usuario u1a;
-        Usuario u1b;
-        Usuario u2a;
-        Usuario u3a;
-        Usuario u4a;
-        Secreto s1a;
-        Secreto s2a;
-        Secreto s3a;
+        static Usuario u1a = null;
+        static Usuario u2a = null;
+        static Usuario u3a = null;
+        static Usuario u4a = null;
+        static Secreto s1a = null;
+        static Secreto s2a = null;
+        static Secreto s3a = null;
 
-        [TestInitialize()]
+        [TestInitialize]
         public void InicializaMetodos()
         {
             data = new DBPruebas();
-            this.u1a = new Usuario("Admin", "u1a@ubusecret.es", "Password", "Maristas", "18", Roles.ADMINISTRADOR);
-            this.u1b = new Usuario("Admin2", "u1a@ubusecret.es", "Password", "Mendoza", "16", Roles.ADMINISTRADOR);
-            this.u2a = new Usuario("Normal", "u2a@ubusecret.es", "Password", "Zapatito", "20", Roles.USUARIO);
-            this.u3a = new Usuario("Normal2", "u3a@ubusecret.es", "Password", "Jesuitas", "21", Roles.USUARIO);
-            this.u4a = new Usuario("Normal3", "u4a@ubusecret.es", "Password", "Sagrada Familia", "23", Roles.USUARIO);
-            this.s1a = new Secreto(u1a, u2a, "Secreto1", "Secreto de prueba");
-            this.s2a = new Secreto(u1a, u2a, "Secreto2", "Otro secreto");
-            this.s3a = new Secreto(u2a, u1a, "Secreto3", "Otro secreto con distinto usuario");
+            u1a = new Usuario("Admin", "u1a@ubusecret.es", "Password", "Maristas", "18", Roles.ADMINISTRADOR);
+            u2a = new Usuario("Normal", "u2a@ubusecret.es", "Password", "Zapatito", "20", Roles.USUARIO);
+            u3a = new Usuario("Normal2", "u3a@ubusecret.es", "Password", "Jesuitas", "21", Roles.USUARIO);
+            u4a = new Usuario("Normal3", "u4a@ubusecret.es", "Password", "Sagrada Familia", "23", Roles.USUARIO);
+            s1a = new Secreto(u1a, u2a, "Secreto1", "Secreto de prueba");
+            s2a = new Secreto(u1a, u2a, "Secreto2", "Otro secreto");
+            s3a = new Secreto(u2a, u1a, "Secreto3", "Otro secreto con distinto usuario");
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void DBPruebasTest()
         {
             Assert.AreEqual(this.data.NumeroUsuarios(), 0);
@@ -44,34 +42,49 @@ namespace DataTests
             Assert.AreEqual(this.data.SiguienteSecreto(), 1);
         }
 
-        [TestMethod()]
-        public void LeeUsuarioTest()
+        public static IEnumerable<object[]> GetLeeUsuarioData()
         {
-            Assert.IsNull(data.LeeUsuario(u1a.Correo));
-            data.InsertaUsuario(u1a);
-            Assert.AreEqual(data.LeeUsuario(u1a.Correo), u1a);
+            yield return new object[] { u1a, "u1a@ubusecret.es", true, u1a  };
+            yield return new object[] { u2a, "u2a@ubusecret.es", false, null  };
+            yield return new object[] { u3a, "u3a@ubusecret.es", true, u3a  };
+            yield return new object[] { u4a, "u4a@ubusecret.es", false, null  };
         }
 
-        [TestMethod()]
-        public void InsertaUsuarioTest()
-        {
-            Assert.AreEqual(-1, u1a.IdUsuario);
-            Assert.AreEqual(Estados.PRECARGADO, u1a.Estado);
-            Assert.IsTrue(data.InsertaUsuario(u1a));
-            Assert.AreEqual(1, u1a.IdUsuario);
-            Assert.AreEqual(Estados.SOLICITADO, u1a.Estado);
-            Assert.IsTrue(data.NumeroUsuarios() == 1);
-            Assert.IsFalse(data.InsertaUsuario(u1a));
-            Assert.IsTrue(data.NumeroUsuarios() == 1);
 
-            Assert.AreEqual(-1, u1b.IdUsuario);
-            Assert.AreEqual(Estados.PRECARGADO, u1b.Estado);
-            Assert.IsFalse(data.InsertaUsuario(u1b));
-            Assert.AreEqual(-1, u1b.IdUsuario);
-            Assert.AreNotEqual(Estados.SOLICITADO, u1b.Estado);
-            Assert.IsTrue(data.NumeroUsuarios() == 1);
+        [DataTestMethod]
+        [DynamicData(nameof(GetLeeUsuarioData), DynamicDataSourceType.Method)]
+        public void LeeUsuarioTest(Usuario u, string correo, bool insertar, Usuario esperado)
+        {
+            Assert.IsNull(data.LeeUsuario(correo));
+            if (insertar)
+            {
+                data.InsertaUsuario(u);
+            }
+            Assert.AreEqual(data.LeeUsuario(correo), esperado);
         }
 
+        public static IEnumerable<object[]> GetInsertaUsuarioData()
+        {
+            yield return new object[] { u1a, false, Estados.SOLICITADO, Estados.SOLICITADO };
+            yield return new object[] { u2a, true, Estados.PRECARGADO, Estados.SOLICITADO };
+            yield return new object[] { u3a, true, Estados.PRECARGADO, Estados.SOLICITADO };
+            yield return new object[] { u4a, true, Estados.PRECARGADO, Estados.SOLICITADO };
+        }
+
+        [DataTestMethod]
+        [DynamicData(nameof(GetInsertaUsuarioData), DynamicDataSourceType.Method)]
+        public void InsertaUsuarioTest(Usuario u, bool valido, Estados previo, Estados despues)
+        {
+            if (previo == Estados.SOLICITADO)
+            {
+                u.Cargar();
+            }
+            Assert.AreEqual(data.InsertaUsuario(u), valido);
+            Assert.AreEqual(u.Estado, despues);
+            Assert.IsFalse(data.InsertaUsuario(u));
+        }
+
+        /*
         [TestMethod()]
         public void BorraUsuarioTest()
         {
@@ -248,5 +261,6 @@ namespace DataTests
             data.InsertaUsuario(u1a);
             Assert.AreEqual(data.SiguienteUsuario(), 2);
         }
+        */
     }
 }

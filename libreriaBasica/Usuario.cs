@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Security.Cryptography;
+using Newtonsoft.Json;
 
 namespace libreriaClases
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class Usuario
     {
         private int idUsuario;
@@ -28,6 +30,7 @@ namespace libreriaClases
             this.rol = rol;
         }
 
+        [JsonProperty]
         public int IdUsuario
         {
             get
@@ -39,6 +42,8 @@ namespace libreriaClases
                 this.idUsuario = value;
             }
         }
+
+        [JsonProperty]
         public Estados Estado
         {
             get
@@ -46,6 +51,8 @@ namespace libreriaClases
                 return this.estado;
             }
         }
+
+        [JsonProperty]
         public string Nombre
         {
             get
@@ -54,6 +61,7 @@ namespace libreriaClases
             }
         }
 
+        [JsonProperty]
         public string Correo
         {
             get 
@@ -69,7 +77,7 @@ namespace libreriaClases
                 return this.contraseña;
             }
         }
-
+        
         public string Pregunta1
         {
             get
@@ -86,6 +94,7 @@ namespace libreriaClases
             }
         }
 
+        [JsonProperty]
         public Roles Rol
         {
             get
