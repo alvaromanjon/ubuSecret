@@ -145,13 +145,10 @@ namespace Data
         {
             bool retorno = false;
 
-            if (LeeUsuario(secreto.Origen.Correo) != null && LeeUsuario(secreto.Destino.Correo) != null)
-            {
-                secreto.IdSecreto = this.siguienteIdSecreto;
-                this.siguienteIdSecreto += 1;
-                tblSecretos.Add(secreto.IdSecreto, secreto);
-                retorno = true;
-            }
+            secreto.IdSecreto = this.siguienteIdSecreto;
+            this.siguienteIdSecreto += 1;
+            tblSecretos.Add(secreto.IdSecreto, secreto);
+            retorno = true;
 
             return retorno;
         }
