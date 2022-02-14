@@ -28,8 +28,8 @@ namespace DataTests
             this.u1a = new Usuario("Admin", "u1a@ubusecret.es", "Password", "Maristas", "18", Roles.ADMINISTRADOR);
             this.u1b = new Usuario("Admin2", "u1a@ubusecret.es", "Password", "Mendoza", "16", Roles.ADMINISTRADOR);
             this.u2a = new Usuario("Normal", "u2a@ubusecret.es", "Password", "Zapatito", "20", Roles.USUARIO);
-            this.u3a = new Usuario("Normal", "normal@ubusecret.es", "Password", "Jesuitas", "21", Roles.USUARIO);
-            this.u4a = new Usuario("Normal2", "normal2@ubusecret.es", "Password", "Sagrada Familia", "23", Roles.USUARIO);
+            this.u3a = new Usuario("Normal2", "u3a@ubusecret.es", "Password", "Jesuitas", "21", Roles.USUARIO);
+            this.u4a = new Usuario("Normal3", "u4a@ubusecret.es", "Password", "Sagrada Familia", "23", Roles.USUARIO);
             this.s1a = new Secreto(u1a, u2a, "Secreto1", "Secreto de prueba");
             this.s2a = new Secreto(u1a, u2a, "Secreto2", "Otro secreto");
             this.s3a = new Secreto(u2a, u1a, "Secreto3", "Otro secreto con distinto usuario");
@@ -82,9 +82,12 @@ namespace DataTests
             data.InsertaSecreto(s3a);
 
             Assert.AreEqual(data.BorraUsuario(u1a.Correo), u1a);
+            Assert.IsNull(data.LeeSecreto(s1a.IdSecreto));
+            Assert.IsNull(data.LeeSecreto(s2a.IdSecreto));
             Assert.IsTrue(data.NumeroSecretos() == 1);
             Assert.IsTrue(data.NumeroUsuarios() == 1);
             Assert.AreEqual(data.BorraUsuario(u2a.Correo), u2a);
+            Assert.IsNull(data.LeeSecreto(s3a.IdSecreto));
             Assert.IsTrue(data.NumeroSecretos() == 0);
             Assert.IsTrue(data.NumeroUsuarios() == 0);
         }
@@ -124,7 +127,7 @@ namespace DataTests
             //listUsuarios.Add(u1a.IdUsuario, u3a);
             //listUsuarios.Add(u2a.IdUsuario, u4a);
 
-            Assert.IsTrue(Enumerable.SequenceEqual(listUsuarios, data.LeeUsuariosActivos()));
+            Assert.IsTrue(Enumerable.SequenceEqual(listUsuarios, data.LeeUsuariosInactivos()));
         }
 
         [TestMethod()]
@@ -143,7 +146,7 @@ namespace DataTests
             listUsuarios.Add(u3a.IdUsuario, u3a);
             listUsuarios.Add(u4a.IdUsuario, u4a);
 
-            Assert.IsTrue(Enumerable.SequenceEqual(listUsuarios, data.LeeUsuariosActivos()));
+            Assert.IsTrue(Enumerable.SequenceEqual(listUsuarios, data.LeeUsuariosPendientes()));
         }
 
         [TestMethod()]
@@ -209,6 +212,7 @@ namespace DataTests
             data.InsertaSecreto(s2a);
             data.InsertaSecreto(s3a);
             Assert.AreEqual(data.BorraSecreto(s1a.IdSecreto), s1a);
+            Assert.IsNull(data.LeeSecreto(s1a.IdSecreto));
             Assert.IsTrue(data.NumeroSecretos() == 2);
         }
 
