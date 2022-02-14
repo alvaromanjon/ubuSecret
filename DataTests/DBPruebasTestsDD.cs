@@ -42,8 +42,22 @@ namespace DataTests
             Assert.AreEqual(this.data.SiguienteSecreto(), 1);
         }
 
+        public static Usuario CrearUsuario(string nombre, string correo, Roles rol)
+        {
+            return new Usuario(nombre, correo, "Password", "Maristas", "18", rol);
+        }
+
+        public static Secreto CrearSecreto(Usuario u1, Usuario u2)
+        {
+            return new Secreto(u1, u2, "Titulo", "Texto del secreto");
+        }
+
         public static IEnumerable<object[]> GetLeeUsuarioData()
         {
+            Usuario u1a = CrearUsuario("Admin", "u1a@ubusecret.es", Roles.ADMINISTRADOR);
+            Usuario u2a = CrearUsuario("Normal", "u2a@ubusecret.es", Roles.USUARIO);
+            Usuario u3a = CrearUsuario("Admin", "u3a@ubusecret.es", Roles.USUARIO);
+            Usuario u4a = CrearUsuario("Normal", "u4a@ubusecret.es", Roles.USUARIO);
             yield return new object[] { u1a, "u1a@ubusecret.es", true, u1a  };
             yield return new object[] { u2a, "u2a@ubusecret.es", false, null  };
             yield return new object[] { u3a, "u3a@ubusecret.es", true, u3a  };
@@ -65,6 +79,10 @@ namespace DataTests
 
         public static IEnumerable<object[]> GetInsertaUsuarioData()
         {
+            Usuario u1a = CrearUsuario("Admin", "u1a@ubusecret.es", Roles.ADMINISTRADOR);
+            Usuario u2a = CrearUsuario("Normal", "u2a@ubusecret.es", Roles.USUARIO);
+            Usuario u3a = CrearUsuario("Admin", "u3a@ubusecret.es", Roles.USUARIO);
+            Usuario u4a = CrearUsuario("Normal", "u4a@ubusecret.es", Roles.USUARIO);
             yield return new object[] { u1a, false, Estados.SOLICITADO, Estados.SOLICITADO };
             yield return new object[] { u2a, true, Estados.PRECARGADO, Estados.SOLICITADO };
             yield return new object[] { u3a, true, Estados.PRECARGADO, Estados.SOLICITADO };
@@ -84,183 +102,166 @@ namespace DataTests
             Assert.IsFalse(data.InsertaUsuario(u));
         }
 
-        /*
-        [TestMethod()]
-        public void BorraUsuarioTest()
+        public static IEnumerable<object[]> GetBorraUsuarioData()
         {
-            data.InsertaUsuario(u1a);
-            data.InsertaUsuario(u2a);
-            data.InsertaSecreto(s1a);
-            data.InsertaSecreto(s2a);
-            data.InsertaSecreto(s3a);
-
-            Assert.AreEqual(data.BorraUsuario(u1a.Correo), u1a);
-            Assert.IsNull(data.LeeSecreto(s1a.IdSecreto));
-            Assert.IsNull(data.LeeSecreto(s2a.IdSecreto));
-            Assert.IsTrue(data.NumeroSecretos() == 1);
-            Assert.IsTrue(data.NumeroUsuarios() == 1);
-            Assert.AreEqual(data.BorraUsuario(u2a.Correo), u2a);
-            Assert.IsNull(data.LeeSecreto(s3a.IdSecreto));
-            Assert.IsTrue(data.NumeroSecretos() == 0);
-            Assert.IsTrue(data.NumeroUsuarios() == 0);
+            Usuario u1a = CrearUsuario("Admin", "u1a@ubusecret.es", Roles.ADMINISTRADOR);
+            Usuario u2a = CrearUsuario("Normal", "u2a@ubusecret.es", Roles.ADMINISTRADOR);
+            yield return new object[] { u1a, "u1a@ubusecret.es", CrearSecreto(u1a, u2a) };
+            yield return new object[] { u2a, "u2a@ubusecret.es", CrearSecreto(u2a, u1a) };
         }
 
-        [TestMethod()]
-        public void LeeUsuariosActivosTest()
+        [DataTestMethod]
+        [DynamicData(nameof(GetBorraUsuarioData), DynamicDataSourceType.Method)]
+        public void BorraUsuarioTest(Usuario u, string correo, Secreto s)
         {
-            SortedList<int, Usuario> listUsuarios = new SortedList<int, Usuario>();
-            data.InsertaUsuario(u1a);
-            u1a.CambiarContraseña("Password", "P@ssword");
-            u1a.DarAlta(u1a);
-            data.InsertaUsuario(u2a);
-            u2a.CambiarContraseña("Password", "P@ssword");
-            u2a.DarAlta(u1a);
-            data.InsertaUsuario(u3a);
-            data.InsertaUsuario(u4a);
+            data.InsertaUsuario(u);
+            data.InsertaSecreto(s);
 
-            listUsuarios.Add(u1a.IdUsuario, u1a);
-            listUsuarios.Add(u2a.IdUsuario, u2a);
-
-            Assert.IsTrue(Enumerable.SequenceEqual(listUsuarios, data.LeeUsuariosActivos()));
+            Assert.AreEqual(data.BorraUsuario(correo), u);
+            Assert.IsNull(data.LeeSecreto(s.IdSecreto));
+            Assert.IsNull(data.LeeUsuario(correo));
         }
 
-        [TestMethod()]
-        public void LeeUsuariosInactivosTest()
+        public static IEnumerable<object[]> GetListaTiposUsuariosData()
+        {
+            Usuario u1a = CrearUsuario("Admin", "u1a@ubusecret.es", Roles.ADMINISTRADOR);
+            Usuario u2a = CrearUsuario("Normal1", "u2a@ubusecret.es", Roles.ADMINISTRADOR);
+            Usuario u3a = CrearUsuario("Normal2", "u3a@ubusecret.es", Roles.USUARIO);
+            Usuario u4a = CrearUsuario("Normal3", "u4a@ubusecret.es", Roles.USUARIO);
+            yield return new object[] { u1a, true, true };
+            yield return new object[] { u2a, true, true };
+            yield return new object[] { u3a, false, true };
+            yield return new object[] { u4a, false, false };
+        }
+
+        [DataTestMethod]
+        [DynamicData(nameof(GetListaTiposUsuariosData), DynamicDataSourceType.Method)]
+        public void LeeUsuariosActivosTest(Usuario u, bool activo, bool insertar)
         {
             SortedList<int, Usuario> listUsuarios = new SortedList<int, Usuario>();
-            data.InsertaUsuario(u1a);
-            u1a.CambiarContraseña("Password", "P@ssword");
-            u1a.DarAlta(u1a);
-            data.InsertaUsuario(u2a);
-            u2a.CambiarContraseña("Password", "P@ssword");
-            u2a.DarAlta(u1a);
-            data.InsertaUsuario(u3a);
-            data.InsertaUsuario(u4a);
 
-            Assert.IsTrue(Enumerable.SequenceEqual(listUsuarios, data.LeeUsuariosInactivos()));
+            if (insertar)
+            {
+                data.InsertaUsuario(u);
+                if (activo)
+                {
+                    u.CambiarContraseña("Password", "P@ssword");
+                    u.DarAlta(u);
+                }
+            }
+
+            listUsuarios = data.LeeUsuariosActivos();
+
+            if (activo)
+            {
+                Assert.IsTrue(listUsuarios.ContainsValue(u));
+            } else
+            {
+                Assert.IsFalse(listUsuarios.ContainsValue(u));
+            }
         }
 
-        [TestMethod()]
-        public void LeeUsuariosPendientesTest()
+        [DataTestMethod]
+        [DynamicData(nameof(GetListaTiposUsuariosData), DynamicDataSourceType.Method)]
+        public void LeeUsuariosInactivosTest(Usuario u, bool activo, bool insertar)
         {
             SortedList<int, Usuario> listUsuarios = new SortedList<int, Usuario>();
-            data.InsertaUsuario(u1a);
-            u1a.CambiarContraseña("Password", "P@ssword");
-            u1a.DarAlta(u1a);
-            data.InsertaUsuario(u2a);
-            u2a.CambiarContraseña("Password", "P@ssword");
-            u2a.DarAlta(u1a);
-            data.InsertaUsuario(u3a);
-            data.InsertaUsuario(u4a);
 
-            listUsuarios.Add(u3a.IdUsuario, u3a);
-            listUsuarios.Add(u4a.IdUsuario, u4a);
+            if (insertar)
+            {
+                data.InsertaUsuario(u);
+                if (activo)
+                {
+                    u.CambiarContraseña("Password", "P@ssword");
+                    u.DarAlta(u);
+                }
+            }
 
-            Assert.IsTrue(Enumerable.SequenceEqual(listUsuarios, data.LeeUsuariosPendientes()));
+            listUsuarios = data.LeeUsuariosInactivos();
+
+            if (!activo && !insertar)
+            {
+                if (data.LeeUsuario(u.Correo) != null)
+                {
+                    Assert.IsTrue(listUsuarios.ContainsValue(u));
+                } 
+            }
+            else
+            {
+                Assert.IsFalse(listUsuarios.ContainsValue(u));
+            }
         }
 
-        [TestMethod()]
-        public void LeeSecretosEnviadosUsuarioTest()
+        [DataTestMethod]
+        [DynamicData(nameof(GetListaTiposUsuariosData), DynamicDataSourceType.Method)]
+        public void LeeUsuariosPendientesTest(Usuario u, bool activo, bool insertar)
         {
-            SortedList<int, Secreto> secUsuario = new SortedList<int, Secreto>();
-            data.InsertaUsuario(u1a);
-            data.InsertaUsuario(u2a);
-            data.InsertaSecreto(s1a);
-            data.InsertaSecreto(s2a);
-            data.InsertaSecreto(s3a);
+            SortedList<int, Usuario> listUsuarios = new SortedList<int, Usuario>();
 
-            secUsuario.Add(s1a.IdSecreto, s1a);
-            secUsuario.Add(s2a.IdSecreto, s2a);
+            if (insertar)
+            {
+                data.InsertaUsuario(u);
+                if (activo)
+                {
+                    u.CambiarContraseña("Password", "P@ssword");
+                    u.DarAlta(u);
+                }
+            }
 
-            Assert.IsTrue(Enumerable.SequenceEqual(secUsuario, data.LeeSecretosEnviadosUsuario(u1a)));
+            listUsuarios = data.LeeUsuariosPendientes();
+
+            if (!activo && insertar)
+            {
+                Assert.IsTrue(listUsuarios.ContainsValue(u));
+            }
+            else
+            {
+                Assert.IsFalse(listUsuarios.ContainsValue(u));
+            }
         }
 
-        [TestMethod()]
-        public void LeeSecretosRecibidosUsuarioTest()
+        public static IEnumerable<object[]> GetListaSecretosData()
         {
-            SortedList<int, Secreto> secUsuario = new SortedList<int, Secreto>();
-            data.InsertaUsuario(u1a);
-            data.InsertaUsuario(u2a);
-            data.InsertaSecreto(s1a);
-            data.InsertaSecreto(s2a);
-            data.InsertaSecreto(s3a);
-
-            secUsuario.Add(s3a.IdSecreto, s3a);
-
-            Assert.IsTrue(Enumerable.SequenceEqual(secUsuario, data.LeeSecretosRecibidosUsuario(u1a)));
+            Usuario u1a = CrearUsuario("Admin", "u1a@ubusecret.es", Roles.ADMINISTRADOR);
+            Usuario u2a = CrearUsuario("Normal1", "u2a@ubusecret.es", Roles.ADMINISTRADOR);
+            Secreto s1a = CrearSecreto(u1a, u2a);
+            Secreto s2a = CrearSecreto(u1a, u2a);
+            Secreto s3a = CrearSecreto(u2a, u1a);
+            yield return new object[] { s1a, u1a, u2a };
+            yield return new object[] { s2a, u1a, u2a };
+            yield return new object[] { s3a, u2a, u1a };
         }
 
-        [TestMethod()]
-        public void InsertaSecretoTest()
+        [DataTestMethod]
+        [DynamicData(nameof(GetListaSecretosData), DynamicDataSourceType.Method)]
+        public void InsertaSecretoTest(Secreto s, Usuario origen, Usuario destino)
         {
-            Assert.AreEqual(-1, s1a.IdSecreto);
-            Assert.IsFalse(data.InsertaSecreto(s1a));
-            data.InsertaUsuario(u1a);
-            Assert.IsFalse(data.InsertaSecreto(s1a));
-            data.InsertaUsuario(u2a);
-            Assert.IsTrue(data.InsertaSecreto(s1a));
-            Assert.AreEqual(1, s1a.IdSecreto);
-            Assert.IsTrue(data.NumeroSecretos() == 1);
+            Assert.AreEqual(-1, s.IdSecreto);
+            data.InsertaUsuario(origen);
+            data.InsertaUsuario(destino);
+            Assert.IsTrue(data.InsertaSecreto(s));
         }
 
-        [TestMethod()]
-        public void LeeSecretoTest()
+        [DataTestMethod]
+        [DynamicData(nameof(GetListaSecretosData), DynamicDataSourceType.Method)]
+        public void LeeSecretoTest(Secreto s, Usuario origen, Usuario destino)
         {
-            Assert.IsNull(data.LeeSecreto(s1a.IdSecreto));
-            data.InsertaUsuario(u1a);
-            data.InsertaUsuario(u2a);
-            data.InsertaSecreto(s1a);
-            Assert.AreEqual(data.LeeSecreto(s1a.IdSecreto), s1a);
+            Assert.IsNull(data.LeeSecreto(s.IdSecreto));
+            data.InsertaUsuario(origen);
+            data.InsertaUsuario(destino);
+            data.InsertaSecreto(s);
+            Assert.AreEqual(data.LeeSecreto(s.IdSecreto), s);
         }
 
-        [TestMethod()]
-        public void BorraSecretoTest()
+        [DataTestMethod]
+        [DynamicData(nameof(GetListaSecretosData), DynamicDataSourceType.Method)]
+        public void BorraSecretoTest(Secreto s, Usuario origen, Usuario destino)
         {
-            data.InsertaUsuario(u1a);
-            data.InsertaUsuario(u2a);
-            data.InsertaSecreto(s1a);
-            data.InsertaSecreto(s2a);
-            data.InsertaSecreto(s3a);
-            Assert.AreEqual(data.BorraSecreto(s1a.IdSecreto), s1a);
-            Assert.IsNull(data.LeeSecreto(s1a.IdSecreto));
-            Assert.IsTrue(data.NumeroSecretos() == 2);
+            data.InsertaUsuario(origen);
+            data.InsertaUsuario(destino);
+            data.InsertaSecreto(s);
+            Assert.AreEqual(data.BorraSecreto(s.IdSecreto), s);
+            Assert.IsNull(data.LeeSecreto(s.IdSecreto));
         }
-
-        [TestMethod()]
-        public void NumeroSecretosTest()
-        {
-            Assert.AreEqual(data.NumeroSecretos(), 0);
-            data.InsertaUsuario(u1a);
-            data.InsertaUsuario(u2a);
-            data.InsertaSecreto(s1a);
-            Assert.AreEqual(data.NumeroSecretos(), 1);
-        }
-
-        [TestMethod()]
-        public void NumeroUsuariosTest()
-        {
-            Assert.AreEqual(data.NumeroUsuarios(), 0);
-            data.InsertaUsuario(u1a);
-            Assert.AreEqual(data.NumeroUsuarios(), 1);
-        }
-
-        [TestMethod()]
-        public void SiguienteSecretoTest()
-        {
-            Assert.AreEqual(data.SiguienteSecreto(), 1);
-            data.InsertaUsuario(u1a);
-            data.InsertaUsuario(u2a);
-            data.InsertaSecreto(s1a);
-            Assert.AreEqual(data.SiguienteSecreto(), 2);
-        }
-
-        [TestMethod()]
-        public void SiguienteUsuarioTest()
-        {
-            Assert.AreEqual(data.SiguienteUsuario(), 1);
-            data.InsertaUsuario(u1a);
-            Assert.AreEqual(data.SiguienteUsuario(), 2);
-        }
-        */
     }
 }

@@ -181,9 +181,7 @@ namespace DataTests
         public void InsertaSecretoTest()
         {
             Assert.AreEqual(-1, s1a.IdSecreto);
-            Assert.IsFalse(data.InsertaSecreto(s1a));
             data.InsertaUsuario(u1a);
-            Assert.IsFalse(data.InsertaSecreto(s1a));
             data.InsertaUsuario(u2a);
             Assert.IsTrue(data.InsertaSecreto(s1a));
             Assert.AreEqual(1, s1a.IdSecreto);
