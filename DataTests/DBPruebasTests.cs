@@ -124,9 +124,6 @@ namespace DataTests
             data.InsertaUsuario(u3a);
             data.InsertaUsuario(u4a);
 
-            //listUsuarios.Add(u1a.IdUsuario, u3a);
-            //listUsuarios.Add(u2a.IdUsuario, u4a);
-
             Assert.IsTrue(Enumerable.SequenceEqual(listUsuarios, data.LeeUsuariosInactivos()));
         }
 
